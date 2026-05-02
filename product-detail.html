@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="View product details, reviews, and vendor info on RUET Online Shop."/>
+  <title>Product Detail — RUET Online Shop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/product-detail.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">RUET<span class="accent">Shop</span></span>
+      </a>
+      <div class="nav-search">
+        <input type="text" id="globalSearch" placeholder="Search products..."/>
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <a href="cart.html" class="icon-btn cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge" id="cartBadge">0</span>
+        </a>
+        <a href="dashboard.html#wishlist" class="icon-btn">
+          <i class="fas fa-heart"></i>
+          <span class="badge wish-badge" id="wishBadge">0</span>
+        </a>
+        <div class="nav-user" id="navUser">
+          <a href="auth.html" class="btn btn-primary btn-sm">Login</a>
+        </div>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="cart.html">Cart</a>
+      <a href="auth.html">Login</a>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <a href="index.html">Home</a> /
+      <a href="products.html">Products</a> /
+      <span id="breadcrumbName">Product</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="product-detail-section">
+    <div class="container">
+      <div class="product-detail-grid" id="productDetailGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS: Description / Reviews -->
+  <section class="product-tabs-section">
+    <div class="container">
+      <div class="tabs">
+        <button class="tab active" data-tab="description">Description</button>
+        <button class="tab" data-tab="reviews">Reviews</button>
+        <button class="tab" data-tab="vendor">Vendor Info</button>
+      </div>
+      <div class="tab-content" id="tabDescription">
+        <div id="descriptionContent"></div>
+      </div>
+      <div class="tab-content hidden" id="tabReviews">
+        <div class="review-form" id="reviewForm">
+          <h3>Leave a Review</h3>
+          <div class="star-input" id="starInput">
+            <span data-val="1">★</span><span data-val="2">★</span>
+            <span data-val="3">★</span><span data-val="4">★</span><span data-val="5">★</span>
+          </div>
+          <textarea id="reviewText" placeholder="Share your experience..." rows="4"></textarea>
+          <button class="btn btn-primary" id="submitReview">Submit Review</button>
+        </div>
+        <div id="reviewsList"></div>
+      </div>
+      <div class="tab-content hidden" id="tabVendor">
+        <div id="vendorInfo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PRODUCTS -->
+  <section class="section">
+    <div class="container">
+      <h2>Related <span class="accent">Products</span></h2>
+      <div class="products-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> RUET Online Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/pages/product-detail.js"></script>
+</body>
+</html>

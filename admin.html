@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Admin Panel — RUET Online Shop management dashboard."/>
+  <title>Admin Panel — RUET Online Shop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">RUET<span class="accent">Shop</span></span>
+      </a>
+      <div class="admin-label"><i class="fas fa-shield-alt"></i> Admin Panel</div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <a href="cart.html" class="icon-btn cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge" id="cartBadge">0</span>
+        </a>
+        <div class="nav-user" id="navUser">
+          <a href="auth.html" class="btn btn-primary btn-sm">Login</a>
+        </div>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="admin.html">Admin Panel</a>
+    </div>
+  </nav>
+  <div class="dashboard-layout">
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar admin-sidebar" id="adminSidebar">
+      <div class="dash-profile">
+        <div class="dash-avatar admin-avatar" id="adminAvatar">A</div>
+        <div class="dash-user-info">
+          <strong id="adminUserName">Admin</strong>
+          <span class="role-badge admin-role-badge">Admin</span>
+        </div>
+      </div>
+      <nav class="dash-nav">
+        <a class="dash-nav-item active" data-tab="overview">
+          <i class="fas fa-chart-line"></i> Overview
+        </a>
+        <a class="dash-nav-item" data-tab="users">
+          <i class="fas fa-users"></i> Users
+        </a>
+        <a class="dash-nav-item" data-tab="products">
+          <i class="fas fa-box"></i> Products
+        </a>
+        <a class="dash-nav-item" data-tab="orders">
+          <i class="fas fa-shopping-bag"></i> Orders
+        </a>
+        <a class="dash-nav-item" data-tab="system">
+          <i class="fas fa-cog"></i> System
+        </a>
+        <a class="dash-nav-item logout-item" id="adminLogoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </nav>
+    </aside>
+    <!-- MAIN CONTENT -->
+    <main class="dash-main">
+      <!-- OVERVIEW -->
+      <div class="dash-tab active" id="tab-overview">
+        <h2><i class="fas fa-chart-line"></i> Admin <span class="accent">Overview</span></h2>
+        <div class="stats-cards" id="adminStatsCards"></div>
+        <div class="dash-grid-2" style="margin-top:2rem">
+          <div class="dash-card">
+            <h3>Recent Orders</h3>
+            <div id="adminRecentOrders"></div>
+          </div>
+          <div class="dash-card">
+            <h3>Recent Users</h3>
+            <div id="adminRecentUsers"></div>
+          </div>
+        </div>
+      </div>
+      <!-- USERS -->
+      <div class="dash-tab hidden" id="tab-users">
+        <div class="tab-header">
+          <h2><i class="fas fa-users"></i> User <span class="accent">Management</span></h2>
+          <span class="badge-count" id="totalUserCount">0 users</span>
+        </div>
+        <div class="admin-filters">
+          <select id="userRoleFilter" class="form-input" style="max-width:180px">
+            <option value="all">All Roles</option>
+            <option value="user">Buyers</option>
+            <option value="vendor">Vendors</option>
+            <option value="admin">Admins</option>
+          </select>
+          <input type="text" id="userSearchInput" class="form-input" placeholder="Search users..." style="max-width:260px"/>
+        </div>
+        <div class="products-table-wrap">
+          <table class="data-table" id="usersTable">
+            <thead>
+              <tr>
+                <th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- PRODUCTS -->
+      <div class="dash-tab hidden" id="tab-products">
+        <div class="tab-header">
+          <h2><i class="fas fa-box"></i> Product <span class="accent">Management</span></h2>
+          <span class="badge-count" id="totalProductCount">0 products</span>
+        </div>
+        <div class="admin-filters">
+          <select id="productCatFilter" class="form-input" style="max-width:180px">
+            <option value="all">All Categories</option>
+          </select>
+          <input type="text" id="productSearchInput" class="form-input" placeholder="Search products..." style="max-width:260px"/>
+        </div>
+        <div class="products-table-wrap">
+          <table class="data-table" id="adminProductsTable">
+            <thead>
+              <tr>
+                <th>Img</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Vendor</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- ORDERS -->
+      <div class="dash-tab hidden" id="tab-orders">
+        <div class="tab-header">
+          <h2><i class="fas fa-shopping-bag"></i> Order <span class="accent">Management</span></h2>
+          <span class="badge-count" id="totalOrderCount">0 orders</span>
+        </div>
+        <div class="admin-filters">
+          <select id="orderStatusFilter" class="form-input" style="max-width:180px">
+            <option value="all">All Statuses</option>
+            <option value="processing">Processing</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div id="adminOrdersList"></div>
+      </div>
+      <!-- SYSTEM -->
+      <div class="dash-tab hidden" id="tab-system">
+        <h2><i class="fas fa-cog"></i> System <span class="accent">Settings</span></h2>
+        <div class="system-cards">
+          <div class="dash-card">
+            <h3>🔄 Reset Seed Data</h3>
+            <p>Clears all data and reloads the demo dataset. This will wipe all users, products, orders, and reviews.</p>
+            <button class="btn btn-danger" id="resetSeedBtn" style="margin-top:1rem">
+              <i class="fas fa-redo"></i> Reset All Data
+            </button>
+          </div>
+          <div class="dash-card">
+            <h3>📊 Storage Info</h3>
+            <div id="storageInfo"></div>
+          </div>
+          <div class="dash-card">
+            <h3>🔑 Admin Credentials</h3>
+            <div class="admin-creds">
+              <p><strong>Admin 1:</strong> tanvir@ruet.ac.bd / admin123</p>
+              <p><strong>Admin 2:</strong> nusrat@ruet.ac.bd / admin123</p>
+              <p><strong>Admin 3:</strong> fahim@ruet.ac.bd / admin123</p>
+              <p style="margin-top:0.5rem; color:var(--text-3)"><strong>Vendor:</strong> karim@ruet.ac.bd / 123456</p>
+              <p style="color:var(--text-3)"><strong>Buyer:</strong> rahim@ruet.ac.bd / 123456</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- ROLE CHANGE MODAL -->
+  <div class="modal-overlay hidden" id="roleModal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3>Change User Role</h3>
+        <button class="modal-close" id="closeRoleModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p id="roleModalUserName" style="margin-bottom:1rem"></p>
+        <div class="form-group">
+          <label>New Role</label>
+          <select id="roleModalSelect" class="form-input">
+            <option value="user">Buyer</option>
+            <option value="vendor">Vendor</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <input type="hidden" id="roleModalUserId"/>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelRoleModal">Cancel</button>
+        <button class="btn btn-primary" id="confirmRoleChange">Save Role</button>
+      </div>
+    </div>
+  </div>
+  <div id="toastContainer" class="toast-container"></div>
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/features/orders.js"></script>
+  <script src="js/pages/admin-page.js"></script>
+</body>
+</html>

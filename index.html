@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RUET Online Shop — Buy and sell within your campus community. Electronics, books, clothing, and more."/>
+  <title>RUET Online Shop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">RUET<span class="accent">Shop</span></span>
+      </a>
+      <div class="nav-search">
+        <input type="text" id="nav-search-input" placeholder="Search products..." />
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle Theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="cart.html" class="icon-btn cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge" id="cartBadge">0</span>
+        </a>
+        <a href="dashboard.html#wishlist" class="icon-btn">
+          <i class="fas fa-heart"></i>
+          <span class="badge wish-badge" id="wishBadge">0</span>
+        </a>
+        <div class="nav-user" id="navUser">
+          <a href="auth.html" class="btn btn-primary btn-sm">Login</a>
+        </div>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="cart.html">Cart</a>
+      <a href="auth.html">Login</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🎓 Campus-Exclusive Marketplace</span>
+      <h1 class="hero-title">Shop Smart <br/><span class="gradient-text">Inside RUET</span></h1>
+      <p class="hero-subtitle">Discover products from your campus vendors. Fast, trusted, and student-friendly.</p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-primary btn-lg">Explore Products</a>
+        <a href="auth.html" class="btn btn-outline btn-lg">Become a Vendor</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="statProducts">0</span><span>Products</span></div>
+        <div class="stat"><span class="stat-num" id="statVendors">0</span><span>Vendors</span></div>
+        <div class="stat"><span class="stat-num" id="statOrders">0</span><span>Orders</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card floating">
+        <div class="hc-emoji">📱</div>
+        <div class="hc-info"><strong>Electronics</strong><span>120+ items</span></div>
+      </div>
+      <div class="hero-card floating delay-1">
+        <div class="hc-emoji">📚</div>
+        <div class="hc-info"><strong>Books</strong><span>80+ items</span></div>
+      </div>
+      <div class="hero-card floating delay-2">
+        <div class="hc-emoji">👕</div>
+        <div class="hc-info"><strong>Clothing</strong><span>200+ items</span></div>
+      </div>
+      <div class="hero-card floating delay-3">
+        <div class="hc-emoji">🍔</div>
+        <div class="hc-info"><strong>Food</strong><span>50+ items</span></div>
+      </div>
+      <div class="hero-blob"></div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section categories-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Browse <span class="accent">Categories</span></h2>
+        <a href="products.html" class="see-all">See All →</a>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section featured-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured <span class="accent">Products</span></h2>
+        <a href="products.html" class="see-all">See All →</a>
+      </div>
+      <div class="products-grid" id="featuredGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="promo-banner">
+    <div class="container">
+      <div class="banner-inner">
+        <div class="banner-text">
+          <h2>Become a Campus Vendor</h2>
+          <p>List your products and reach thousands of RUET students instantly.</p>
+          <a href="auth.html" class="btn btn-white">Start Selling</a>
+        </div>
+        <div class="banner-emoji">🏪</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>New <span class="accent">Arrivals</span></h2>
+        <a href="products.html" class="see-all">See All →</a>
+      </div>
+      <div class="products-grid" id="newArrivalsGrid"></div>
+    </div>
+  </section>
+
+  <!-- TOAST -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo"><span class="logo-icon">🛒</span><span class="logo-text">RUET<span class="accent">Shop</span></span></div>
+          <p>The official campus marketplace for RUET students and vendors.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="cart.html">Cart</a>
+          <a href="auth.html">Login</a>
+        </div>
+        <div class="footer-links">
+          <h4>Categories</h4>
+          <a href="products.html?cat=Electronics">Electronics</a>
+          <a href="products.html?cat=Books">Books</a>
+          <a href="products.html?cat=Clothing">Clothing</a>
+          <a href="products.html?cat=Food">Food</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <span>📍 RUET, Rajshahi</span>
+          <span>📧 shop@ruet.ac.bd</span>
+          <span>📞 +880 1234-567890</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> RUET Online Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/ui/loader.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>
