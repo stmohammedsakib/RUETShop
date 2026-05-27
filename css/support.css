@@ -1,0 +1,300 @@
+/* =============================================
+   RUETShop — Support Page
+   ============================================= */
+
+/* ---- HERO ---- */
+.support-hero {
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  margin-top: var(--nav-height);
+  background: linear-gradient(135deg, #0f2847 0%, #1a3f6f 35%, #16213e 70%, #0f3460 100%);
+  position: relative;
+  overflow: hidden;
+}
+.support-hero::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 65%);
+  top: -200px;
+  right: -100px;
+  pointer-events: none;
+}
+.support-hero::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255,215,0,0.06) 0%, transparent 65%);
+  bottom: -100px;
+  left: -100px;
+  pointer-events: none;
+}
+.support-hero h1 {
+  color: white;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 0.75rem;
+}
+.support-hero p {
+  color: rgba(255,255,255,0.65);
+  position: relative;
+  z-index: 1;
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ---- SEARCH BAR ---- */
+.support-search {
+  max-width: 520px;
+  margin: 2rem auto 0;
+  position: relative;
+  z-index: 1;
+}
+.support-search input {
+  width: 100%;
+  padding: 0.85rem 1.25rem 0.85rem 3rem;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+.support-search input::placeholder { color: rgba(255,255,255,0.5); }
+.support-search input:focus {
+  border-color: var(--primary);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 3px rgba(255,107,53,0.15);
+}
+.support-search i {
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.4);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+/* ---- MAIN CONTAINER ---- */
+.support-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+/* ---- QUICK HELP CARDS ---- */
+.quick-help-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+.quick-help-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.quick-help-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.08);
+}
+.quick-help-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.85rem;
+  display: block;
+}
+.quick-help-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+}
+.quick-help-card p {
+  font-size: 0.82rem;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+/* ---- FAQ SECTION ---- */
+.faq-section-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.faq-section-title::before {
+  content: '❓';
+  font-size: 1.3rem;
+}
+
+.faq-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.faq-item:hover {
+  border-color: rgba(255,107,53,0.2);
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+.faq-question:hover {
+  background: rgba(255,107,53,0.03);
+}
+.faq-question h3 {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 0;
+  flex: 1;
+}
+.faq-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--text-3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-toggle {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  transform: rotate(180deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1), padding 0.35s ease;
+  padding: 0 1.5rem;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding: 0 1.5rem 1.25rem;
+}
+.faq-answer p {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+/* ---- CONTACT SECTION ---- */
+.contact-section-title {
+  font-size: 1.4rem;
+  margin: 3rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.contact-section-title::before {
+  content: '📞';
+  font-size: 1.3rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.contact-card {
+  background: var(--surface);
+  padding: 1.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.08);
+}
+.contact-card i {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+.contact-card h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+.contact-card p {
+  font-size: 0.88rem;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+/* ---- HELP CTA ---- */
+.support-cta {
+  background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(255,215,0,0.04) 100%);
+  border: 1.5px solid rgba(255,107,53,0.15);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.support-cta h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.support-cta p {
+  color: var(--text-3);
+  font-size: 0.92rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .support-hero {
+    padding: 3.5rem 1.5rem 3rem;
+  }
+  .support-container {
+    padding: 2rem 1.5rem 3rem;
+  }
+  .quick-help-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .support-hero {
+    padding: 3rem 1rem 2.5rem;
+  }
+  .quick-help-grid {
+    gap: 0.75rem;
+  }
+}
