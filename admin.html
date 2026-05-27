@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Admin Panel — RUETShop management dashboard."/>
+  <title>Admin Panel — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div id="app-navbar"></div>
+  <div class="dashboard-layout">
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar admin-sidebar" id="adminSidebar">
+      <div class="dash-profile">
+        <div class="dash-avatar admin-avatar" id="adminAvatar">A</div>
+        <div class="dash-user-info">
+          <strong id="adminUserName">Admin</strong>
+          <span class="role-badge admin-role-badge">Admin</span>
+        </div>
+      </div>
+      <nav class="dash-nav">
+        <a class="dash-nav-item active" data-tab="overview">
+          <i class="fas fa-chart-line"></i> Overview
+        </a>
+        <a class="dash-nav-item" data-tab="users">
+          <i class="fas fa-users"></i> Users
+        </a>
+        <a class="dash-nav-item" data-tab="products">
+          <i class="fas fa-box"></i> Products
+        </a>
+        <a class="dash-nav-item" data-tab="orders">
+          <i class="fas fa-shopping-bag"></i> Orders
+        </a>
+        <a class="dash-nav-item" data-tab="about">
+          <i class="fas fa-file-alt"></i> About Page
+        </a>
+        <a class="dash-nav-item" data-tab="system">
+          <i class="fas fa-cog"></i> System
+        </a>
+        <a class="dash-nav-item logout-item" id="adminLogoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </nav>
+    </aside>
+    <!-- MAIN CONTENT -->
+    <main class="dash-main">
+      <!-- OVERVIEW -->
+      <div class="dash-tab active" id="tab-overview">
+        <h2><i class="fas fa-chart-line"></i> Admin <span class="accent">Overview</span></h2>
+        <div class="stats-cards" id="adminStatsCards"></div>
+        <div class="dash-grid-2" style="margin-top:2rem">
+          <div class="dash-card">
+            <h3>Recent Orders</h3>
+            <div id="adminRecentOrders"></div>
+          </div>
+          <div class="dash-card">
+            <h3>Recent Users</h3>
+            <div id="adminRecentUsers"></div>
+          </div>
+        </div>
+      </div>
+      <!-- USERS -->
+      <div class="dash-tab hidden" id="tab-users">
+        <div class="tab-header">
+          <h2><i class="fas fa-users"></i> User <span class="accent">Management</span></h2>
+          <span class="badge-count" id="totalUserCount">0 users</span>
+        </div>
+        <div class="admin-filters">
+          <select id="userRoleFilter" class="form-input" style="max-width:180px">
+            <option value="all">All Roles</option>
+            <option value="user">Normal Users</option>
+            <option value="vendor">Vendors</option>
+            <option value="admin">Admins</option>
+          </select>
+          <input type="text" id="userSearchInput" class="form-input" placeholder="Search users..." style="max-width:260px"/>
+        </div>
+        <div class="products-table-wrap">
+          <table class="data-table" id="usersTable">
+            <thead>
+              <tr>
+                <th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- PRODUCTS -->
+      <div class="dash-tab hidden" id="tab-products">
+        <div class="tab-header">
+          <h2><i class="fas fa-box"></i> Product <span class="accent">Management</span></h2>
+          <span class="badge-count" id="totalProductCount">0 products</span>
+        </div>
+        <div class="admin-filters">
+          <select id="productCatFilter" class="form-input" style="max-width:180px">
+            <option value="all">All Categories</option>
+          </select>
+          <input type="text" id="productSearchInput" class="form-input" placeholder="Search products..." style="max-width:260px"/>
+        </div>
+        <div class="products-table-wrap">
+          <table class="data-table" id="adminProductsTable">
+            <thead>
+              <tr>
+                <th>Img</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Vendor</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- ORDERS -->
+      <div class="dash-tab hidden" id="tab-orders">
+        <div class="tab-header">
+          <h2><i class="fas fa-shopping-bag"></i> Order <span class="accent">Management</span></h2>
+          <span class="badge-count" id="totalOrderCount">0 orders</span>
+        </div>
+        <div class="admin-filters">
+          <select id="orderStatusFilter" class="form-input" style="max-width:180px">
+            <option value="all">All Statuses</option>
+            <option value="processing">Processing</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div id="adminOrdersList"></div>
+      </div>
+      <!-- ABOUT PAGE -->
+      <div class="dash-tab hidden" id="tab-about">
+        <h2><i class="fas fa-file-alt"></i> Edit <span class="accent">About Page</span></h2>
+        <div class="profile-form-wrap" style="max-width: 800px; margin-top: 1.5rem;">
+          <div class="form-group">
+            <label>Hero Description</label>
+            <textarea id="aboutEditHero" class="form-input" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Mission Statement</label>
+            <textarea id="aboutEditMission" class="form-input" rows="6"></textarea>
+          </div>
+          <hr style="margin: 2rem 0; border: none; border-top: 1.5px solid var(--border);" />
+          <h3 style="margin-bottom: 1rem;"><i class="fas fa-address-book"></i> Contact Information</h3>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="aboutEditLoc" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Support Email</label>
+            <input type="email" id="aboutEditEmail" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" id="aboutEditPhone" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Department</label>
+            <input type="text" id="aboutEditDept" class="form-input" />
+          </div>
+          
+          <hr style="margin: 2rem 0; border: none; border-top: 1.5px solid var(--border);" />
+          <h3 style="margin-bottom: 1rem;"><i class="fas fa-users"></i> Developer & Admin Information</h3>
+          
+          <div class="dash-card" style="margin-bottom: 1rem; padding: 1rem;">
+            <h4 style="margin-bottom: 0.5rem;">Developer 1</h4>
+            <div class="form-group"><label>Name</label><input type="text" id="dev1Name" class="form-input"/></div>
+            <div class="form-group"><label>Role</label><input type="text" id="dev1Role" class="form-input"/></div>
+            <div class="form-group">
+              <label>Profile Picture</label>
+              <input type="file" id="dev1ImgFile" class="form-input" accept="image/*"/>
+              <input type="hidden" id="dev1ImgBase64"/>
+              <div id="dev1ImgPreview" style="display:none; margin-top:0.5rem;">
+                <img src="" alt="Dev 1 Preview" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid var(--border);"/>
+                <button type="button" class="btn btn-outline" style="margin-left:0.5rem; font-size:0.75rem; padding:0.25rem 0.5rem;" onclick="document.getElementById('dev1ImgBase64').value=''; this.parentElement.style.display='none';">Remove</button>
+              </div>
+            </div>
+            <div class="form-group"><label>Bio</label><textarea id="dev1Bio" class="form-input" rows="3"></textarea></div>
+            <div class="form-group"><label>Email</label><input type="text" id="dev1Email" class="form-input"/></div>
+            <div class="form-group"><label>Phone</label><input type="text" id="dev1Phone" class="form-input"/></div>
+            <div class="form-group"><label>GitHub</label><input type="text" id="dev1Git" class="form-input" placeholder="https://github.com/..."/></div>
+            <div class="form-group"><label>LinkedIn</label><input type="text" id="dev1In" class="form-input" placeholder="https://linkedin.com/..."/></div>
+            <div class="form-group"><label>Facebook</label><input type="text" id="dev1Fb" class="form-input" placeholder="https://facebook.com/..."/></div>
+          </div>
+          <div class="dash-card" style="margin-bottom: 1rem; padding: 1rem;">
+            <h4 style="margin-bottom: 0.5rem;">Developer 2</h4>
+            <div class="form-group"><label>Name</label><input type="text" id="dev2Name" class="form-input"/></div>
+            <div class="form-group"><label>Role</label><input type="text" id="dev2Role" class="form-input"/></div>
+            <div class="form-group">
+              <label>Profile Picture</label>
+              <input type="file" id="dev2ImgFile" class="form-input" accept="image/*"/>
+              <input type="hidden" id="dev2ImgBase64"/>
+              <div id="dev2ImgPreview" style="display:none; margin-top:0.5rem;">
+                <img src="" alt="Dev 2 Preview" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid var(--border);"/>
+                <button type="button" class="btn btn-outline" style="margin-left:0.5rem; font-size:0.75rem; padding:0.25rem 0.5rem;" onclick="document.getElementById('dev2ImgBase64').value=''; this.parentElement.style.display='none';">Remove</button>
+              </div>
+            </div>
+            <div class="form-group"><label>Bio</label><textarea id="dev2Bio" class="form-input" rows="3"></textarea></div>
+            <div class="form-group"><label>Email</label><input type="text" id="dev2Email" class="form-input"/></div>
+            <div class="form-group"><label>Phone</label><input type="text" id="dev2Phone" class="form-input"/></div>
+            <div class="form-group"><label>GitHub</label><input type="text" id="dev2Git" class="form-input" placeholder="https://github.com/..."/></div>
+            <div class="form-group"><label>LinkedIn</label><input type="text" id="dev2In" class="form-input" placeholder="https://linkedin.com/..."/></div>
+            <div class="form-group"><label>Facebook</label><input type="text" id="dev2Fb" class="form-input" placeholder="https://facebook.com/..."/></div>
+          </div>
+          <div class="dash-card" style="margin-bottom: 1.5rem; padding: 1rem;">
+            <h4 style="margin-bottom: 0.5rem;">Developer 3</h4>
+            <div class="form-group"><label>Name</label><input type="text" id="dev3Name" class="form-input"/></div>
+            <div class="form-group"><label>Role</label><input type="text" id="dev3Role" class="form-input"/></div>
+            <div class="form-group">
+              <label>Profile Picture</label>
+              <input type="file" id="dev3ImgFile" class="form-input" accept="image/*"/>
+              <input type="hidden" id="dev3ImgBase64"/>
+              <div id="dev3ImgPreview" style="display:none; margin-top:0.5rem;">
+                <img src="" alt="Dev 3 Preview" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid var(--border);"/>
+                <button type="button" class="btn btn-outline" style="margin-left:0.5rem; font-size:0.75rem; padding:0.25rem 0.5rem;" onclick="document.getElementById('dev3ImgBase64').value=''; this.parentElement.style.display='none';">Remove</button>
+              </div>
+            </div>
+            <div class="form-group"><label>Bio</label><textarea id="dev3Bio" class="form-input" rows="3"></textarea></div>
+            <div class="form-group"><label>Email</label><input type="text" id="dev3Email" class="form-input"/></div>
+            <div class="form-group"><label>Phone</label><input type="text" id="dev3Phone" class="form-input"/></div>
+            <div class="form-group"><label>GitHub</label><input type="text" id="dev3Git" class="form-input" placeholder="https://github.com/..."/></div>
+            <div class="form-group"><label>LinkedIn</label><input type="text" id="dev3In" class="form-input" placeholder="https://linkedin.com/..."/></div>
+            <div class="form-group"><label>Facebook</label><input type="text" id="dev3Fb" class="form-input" placeholder="https://facebook.com/..."/></div>
+          </div>
+
+          <button class="btn btn-primary" id="saveAboutBtn"><i class="fas fa-save"></i> Save Content</button>
+        </div>
+      </div>
+      <!-- SYSTEM -->
+      <div class="dash-tab hidden" id="tab-system">
+        <h2><i class="fas fa-cog"></i> System <span class="accent">Settings</span></h2>
+        <div class="system-cards">
+          <div class="dash-card">
+            <h3>🔄 Reset Seed Data</h3>
+            <p>Clears all data and reloads the demo dataset. This will wipe all users, products, orders, and reviews.</p>
+            <button class="btn btn-danger" id="resetSeedBtn" style="margin-top:1rem">
+              <i class="fas fa-redo"></i> Reset All Data
+            </button>
+          </div>
+          <div class="dash-card">
+            <h3>📊 Storage Info</h3>
+            <div id="storageInfo"></div>
+          </div>
+          <div class="dash-card">
+            <h3>🔑 Admin Credentials</h3>
+            <div class="admin-creds">
+              <div class="cred-group" style="margin-bottom:0.75rem">
+                <h4 style="margin-bottom:0.5rem; color:var(--primary)">👑 System Administrators</h4>
+                <p><strong>Ashraful Anower Shakib</strong> <br><span style="font-size:0.78rem;opacity:0.7">— Founder, CEO & Lead Developer</span><br><span style="color:var(--text-3)">ashrafulanower@ruetshop.com</span><br><span style="font-size:0.78rem;color:var(--text-3)">📞 +8801816442249 <br> 🏛️ Dept. of ECE, RUET</span></p>
+                <p><strong>Al Saniat Samim</strong> <br><span style="font-size:0.78rem;opacity:0.7">— Co-Founder, CTO & Co-Developer</span><br><span style="color:var(--text-3)">saniatsamim@ruetshop.com</span><br><span style="font-size:0.78rem;color:var(--text-3)">📞 +8801745233662 <br> 🏛️ Dept. of ECE, RUET</span></p>
+                <p><strong>Mohammed Sakib</strong> <br><span style="font-size:0.78rem;opacity:0.7">— Co-Founder, COO & Co-Developer</span><br><span style="color:var(--text-3)">mohammedsakib@ruetshop.com</span><br><span style="font-size:0.78rem;color:var(--text-3)">📞 +8801310097126 <br> 🏛️ Dept. of ECE, RUET</span></p>
+              </div>
+              <div class="cred-group" style="margin-bottom:0.75rem">
+                <h4 style="margin-bottom:0.5rem; color:var(--text-2)">🧪 Demo Accounts</h4>
+                <p><strong>🏪 Vendor (TechZone RUET):</strong> <span style="color:var(--text-3)">techzoneruet@gmail.com</span> · <code>vendor123456</code></p>
+                <p><strong>🏪 Vendor (Campus Cafe):</strong> <span style="color:var(--text-3)">ruetcampuscafe@gmail.com</span> · <code>vendor123456</code></p>
+                <p><strong>🏪 Vendor (Nayeem Fashion):</strong> <span style="color:var(--text-3)">nayeemfashionruet@gmail.com</span> · <code>vendor123456</code></p>
+                <p><strong>🏪 Vendor (Campus Canteen Supplies):</strong> <span style="color:var(--text-3)">ruetcampuscanteen@gmail.com</span> · <code>vendor123456</code></p>
+                <p><strong>🏪 Vendor (Campus Stationery):</strong> <span style="color:var(--text-3)">ruetcampusstationery@gmail.com</span> · <code>vendor123456</code></p>
+                <p><strong>🏪 Vendor (RUET Fashion Hub):</strong> <span style="color:var(--text-3)">ruetfashionhub@gmail.com</span> · <code>vendor123456</code></p>
+                <p><strong>🛒 Normal User (Sakib Al Hasan):</strong> <br><span style="color:var(--text-3)">sakib@student.ruet.ac.bd</span> · <code>user123456</code></p>
+                <p><strong>🛒 Normal User (Sumaiya Begum):</strong> <br><span style="color:var(--text-3)">sumaiya@student.ruet.ac.bd</span> · <code>user123456</code></p>
+                <p><strong>🛒 Normal User (Kamal Uddin):</strong> <br><span style="color:var(--text-3)">kamal@student.ruet.ac.bd</span> · <code>user123456</code></p>
+                <p><strong>🛒 Normal User (Karim Uddin):</strong> <br><span style="color:var(--text-3)">karim@student.ruet.ac.bd</span> · <code>user123456</code></p>
+                <p><strong>🛒 Normal User (Rahim Hossain):</strong> <br><span style="color:var(--text-3)">rahim@student.ruet.ac.bd</span> · <code>user123456</code></p>
+                <p><strong>🛒 Normal User (Alamin Hossain):</strong> <br><span style="color:var(--text-3)">alamin@student.ruet.ac.bd</span> · <code>user123456</code></p>
+              </div>
+              <div class="cred-group">
+                <h4 style="margin-bottom:0.5rem; color:var(--text-2)">ℹ️ System Info</h4>
+                <p style="font-size:0.82rem;color:var(--text-3)">Version: 2.0.0 · Storage: LocalStorage · Project: Software Development Project (SDP)<br>Department of ECE, Rajshahi University of Engineering & Technology</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- ROLE CHANGE MODAL -->
+  <div class="modal-overlay hidden" id="roleModal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3>Change User Role</h3>
+        <button class="modal-close" id="closeRoleModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p id="roleModalUserName" style="margin-bottom:1rem"></p>
+        <div class="form-group">
+          <label>New Role</label>
+          <select id="roleModalSelect" class="form-input">
+            <option value="user">Normal User</option>
+            <option value="vendor">Vendor</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <input type="hidden" id="roleModalUserId"/>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelRoleModal">Cancel</button>
+        <button class="btn btn-primary" id="confirmRoleChange">Save Role</button>
+      </div>
+    </div>
+  </div>
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/features/orders.js"></script>
+  <script src="js/pages/admin-page.js"></script>
+</body>
+</html>

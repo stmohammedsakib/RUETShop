@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="View product details, reviews, and vendor info on RUETShop."/>
+  <title>Product Detail — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/product-detail.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <div id="app-navbar"></div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <a href="index.html">Home</a> /
+      <a href="products.html">Products</a> /
+      <span id="breadcrumbName">Product</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="product-detail-section">
+    <div class="container">
+      <div class="product-detail-grid" id="productDetailGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS: Description / Reviews -->
+  <section class="product-tabs-section">
+    <div class="container">
+      <div class="tabs">
+        <button class="tab active" data-tab="description">Description</button>
+        <button class="tab" data-tab="reviews">Reviews</button>
+        <button class="tab" data-tab="vendor">Seller Info</button>
+      </div>
+      <div class="tab-content" id="tabDescription">
+        <div id="descriptionContent"></div>
+      </div>
+      <div class="tab-content hidden" id="tabReviews">
+        <div id="reviewsList"></div>
+      </div>
+      <div class="tab-content hidden" id="tabVendor">
+        <div id="vendorInfo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PRODUCTS -->
+  <section class="section">
+    <div class="container">
+      <h2>Related <span class="accent">Products</span></h2>
+      <div class="products-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/pages/product-detail.js"></script>
+</body>
+</html>

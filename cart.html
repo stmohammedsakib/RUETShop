@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Review your shopping cart and checkout on RUETShop."/>
+  <title>Cart — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/cart.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <div id="app-navbar"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Shopping <span class="accent">Cart</span></h1>
+      <p>Review your selected items</p>
+    </div>
+  </div>
+
+  <div class="cart-layout container" id="cartLayout">
+
+    <!-- CART ITEMS -->
+    <div class="cart-items-col">
+      <div class="cart-toolbar">
+        <span id="cartItemCount">0 items</span>
+        <button class="btn-text danger" id="clearCartBtn">
+          <i class="fas fa-trash"></i> Clear Cart
+        </button>
+      </div>
+      <div id="cartItemsList"></div>
+      <div class="empty-cart hidden" id="emptyCart">
+        <div class="empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Add some amazing products from our campus marketplace!</p>
+        <a href="products.html" class="btn btn-primary">Browse Products</a>
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <aside class="cart-summary" id="cartSummary">
+      <h3>Order Summary</h3>
+
+
+      <div class="summary-rows">
+        <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">৳0</span></div>
+        <div class="summary-row"><span>Discount</span><span id="summaryDiscount" class="success-text">-৳0</span></div>
+        <div class="summary-row"><span>Delivery</span><span id="summaryDelivery">৳0</span></div>
+        <div class="summary-row total-row"><strong>Total</strong><strong id="summaryTotal">৳0</strong></div>
+      </div>
+
+      <div class="coupon-section">
+        <div class="coupon-input-row">
+          <input type="text" id="couponInput" class="form-input" placeholder="Enter coupon code" />
+          <button class="btn btn-outline btn-sm" id="applyCoupon">Apply</button>
+        </div>
+        <div id="couponAppliedBadge" class="coupon-applied" style="display:none;">
+          <span>🎫 <span class="coupon-label"></span></span>
+          <button class="coupon-remove-btn" id="removeCoupon" aria-label="Remove coupon">✕</button>
+        </div>
+        <p class="coupon-hint">Try: <code>RUET10</code>, <code>WELCOME20</code>, <code>CAMPUS15</code>, <code>FREESHIP</code></p>
+      </div>
+
+      <button class="btn btn-primary w-full btn-lg" id="checkoutBtn">
+        <i class="fas fa-lock"></i> Proceed to Checkout
+      </button>
+      <a href="products.html" class="btn btn-outline w-full" style="margin-top:0.5rem">
+        Continue Shopping
+      </a>
+
+      <div class="secure-badges">
+        <span>🔒 Secure Payment</span>
+        <span>📦 Campus Delivery</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay hidden" id="checkoutModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3>Complete Your Order</h3>
+        <button class="modal-close" id="closeCheckout"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="checkout-steps">
+          <div class="step active" id="step1">
+            <div class="step-num">1</div><span>Delivery</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" id="step2">
+            <div class="step-num">2</div><span>Payment</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" id="step3">
+            <div class="step-num">3</div><span>Confirm</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: Delivery -->
+        <div class="checkout-step" id="checkoutStep1">
+          <h4>Delivery Information</h4>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="deliveryName" class="form-input" placeholder="Your full name"/>
+            </div>
+            <div class="form-group">
+              <label>Phone *</label>
+              <input type="tel" id="deliveryPhone" class="form-input" placeholder="+880..."/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Delivery Location *</label>
+            <select id="deliveryLocation" class="form-input">
+              <option value="">Select campus location</option>
+              <option value="Hall Gate">Hall Gate</option>
+              <option value="Main Gate">Main Gate</option>
+              <option value="Academic Building">Academic Building</option>
+              <option value="Library">Library</option>
+              <option value="Cafeteria">Cafeteria</option>
+              <option value="Custom Location">Custom Location</option>
+            </select>
+          </div>
+          <div class="form-group" id="customLocationGroup" style="display:none">
+            <label>Custom Location</label>
+            <input type="text" id="customLocation" class="form-input" placeholder="Describe location"/>
+          </div>
+          <div class="form-group">
+            <label>Delivery Notes</label>
+            <textarea id="deliveryNotes" class="form-input" rows="2" placeholder="Any special instructions..."></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 2: Payment -->
+        <div class="checkout-step hidden" id="checkoutStep2">
+          <h4>Payment Method</h4>
+          <div class="payment-methods">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="bkash" checked/>
+              <span class="payment-card">
+                <span class="pm-icon">📱</span>
+                <strong>bKash</strong>
+                <small>Mobile Banking</small>
+              </span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="nagad"/>
+              <span class="payment-card">
+                <span class="pm-icon">💳</span>
+                <strong>Nagad</strong>
+                <small>Mobile Banking</small>
+              </span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="cod"/>
+              <span class="payment-card">
+                <span class="pm-icon">💵</span>
+                <strong>Cash on Delivery</strong>
+                <small>Pay when received</small>
+              </span>
+            </label>
+          </div>
+          <div id="bkashDetails" class="payment-details">
+            <div class="form-group">
+              <label>bKash Number</label>
+              <input type="tel" id="bkashNumber" class="form-input" placeholder="01XXXXXXXXX"/>
+            </div>
+            <div class="form-group">
+              <label>Transaction ID</label>
+              <input type="text" id="transactionId" class="form-input" placeholder="TXN ID after payment"/>
+            </div>
+            <div class="payment-info">
+              <p>Send <strong id="payAmount">৳0</strong> to <strong>01712345678</strong> (bKash merchant)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Confirm -->
+        <div class="checkout-step hidden" id="checkoutStep3">
+          <div class="order-confirm">
+            <div class="confirm-icon">🎉</div>
+            <h3>Order Confirmed!</h3>
+            <p>Your order has been placed successfully.</p>
+            <div class="order-id-display">
+              Order ID: <strong id="confirmOrderId">—</strong>
+            </div>
+            <div class="confirm-summary" id="confirmSummary"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" id="checkoutFooter">
+        <button class="btn btn-outline" id="checkoutPrev">Back</button>
+        <button class="btn btn-primary" id="checkoutNext">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/modal.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/features/orders.js"></script>
+  <script src="js/pages/cart-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="About RUETShop — Bangladesh's most trusted campus marketplace built by RUET students, for RUET students."/>
+  <title>About Us — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/about.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ════════════════════════════════════════════ -->
+  <div id="app-navbar"></div>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-inner">
+        <div class="logo-showcase-brand">
+          <span class="logo-showcase-icon">🛒</span><span class="logo-showcase-name">RUET<span class="accent">Shop</span></span>
+        </div>
+        <span class="hero-badge">🎓 Campus Marketplace — Built for RUET Students</span>
+        <h1>Built by <span class="gradient-text">Students</span><br/>Designed for <span class="gradient-text">Students</span></h1>
+        <p class="about-hero-desc" id="aboutHeroDescText">RUETShop is a campus-exclusive multi-vendor e-commerce platform connecting students, vendors, and the RUET community — making campus commerce faster, safer, and smarter.</p>
+        <div class="about-hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="aStatProducts">0</span>
+            <span class="hero-stat-label">Products Listed</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="aStatVendors">0</span>
+            <span class="hero-stat-label">Active Vendors</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" id="aStatOrders">0</span>
+            <span class="hero-stat-label">Orders Placed</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">3</span>
+            <span class="hero-stat-label">Developers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MISSION ════════════════════════════════════════════ -->
+  <section class="mission-section">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-text">
+          <h2>Our <span class="accent">Mission</span></h2>
+          <div id="aboutMissionText">
+            <p>RUETShop was born from a simple frustration — students at Rajshahi University of Engineering & Technology had no dedicated, trusted platform to buy or sell within their campus community.</p>
+            <p>We built a full-featured marketplace that is fast, secure, and tailored to the unique needs of campus life — from engineering supplies and textbooks to lab equipment and daily essentials.</p>
+          </div>
+          <div class="mission-highlights">
+            <div class="mission-point">
+              <span class="mission-point-icon">🎯</span>
+              <div class="mission-point-text">
+                <strong>Campus-First Approach</strong>
+                <span>Every feature is designed specifically for RUET students and vendors.</span>
+              </div>
+            </div>
+            <div class="mission-point">
+              <span class="mission-point-icon">🔒</span>
+              <div class="mission-point-text">
+                <strong>Safe & Trusted</strong>
+                <span>Session management, rate limiting, and secure authentication baked in.</span>
+              </div>
+            </div>
+            <div class="mission-point">
+              <span class="mission-point-icon">⚡</span>
+              <div class="mission-point-text">
+                <strong>Fast & Lightweight</strong>
+                <span>Pure vanilla JS — instant loads even on campus WiFi with no build step.</span>
+              </div>
+            </div>
+            <div class="mission-point">
+              <span class="mission-point-icon">🌍</span>
+              <div class="mission-point-text">
+                <strong>Open for Everyone</strong>
+                <span>Normal Users, Dedicated Sellers, and Admins — one platform, three powerful roles.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mission-visual">
+          <div class="mission-card-stack">
+            <div class="m-card m-card-1">
+              <div class="m-card-icon">🛒</div>
+              <h4>Multi-Vendor Marketplace</h4>
+              <p>Vendors list products, manage inventory, and track orders — all from one dashboard.</p>
+            </div>
+            <div class="m-card m-card-2">
+              <div class="m-card-icon">📦</div>
+              <h4>100+ Products Across 8 Categories</h4>
+              <p>Electronics, books, clothing, food, stationery, sports, lab supplies & more.</p>
+            </div>
+            <div class="m-card m-card-3">
+              <div class="m-card-icon">🎓</div>
+              <h4>Built for RUET, 2026</h4>
+              <p>- By Department of ECE, RUET, Rajshahi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES ═══════════════════════════════════════════ -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Makes <span class="accent">RUETShop</span> Special</h2>
+        <p>Every feature is thoughtfully crafted for the best campus commerce experience.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card"><span class="feature-icon">👥</span><h3>3-Role System</h3><p>Distinct experiences for Normal Users, Dedicated Vendors, and Admins with tailored dashboards and permissions.</p></div>
+        <div class="feature-card"><span class="feature-icon">🔐</span><h3>Secure Auth</h3><p>Rate-limited login (5 attempts / 15-min lockout), hashed passwords, session expiry, and guest mode.</p></div>
+        <div class="feature-card"><span class="feature-icon">🛍️</span><h3>Smart Cart</h3><p>Persistent cart per user, guest cart that merges on login, real-time stock validation, and coupon support.</p></div>
+        <div class="feature-card"><span class="feature-icon">❤️</span><h3>Wishlist</h3><p>Save products for later, move items directly to cart, and track wishlist counts in real-time.</p></div>
+        <div class="feature-card"><span class="feature-icon">⭐</span><h3>Reviews & Ratings</h3><p>Verified Normal Users leave star ratings with comments. Ratings auto-recalculate on submission or deletion.</p></div>
+        <div class="feature-card"><span class="feature-icon">📊</span><h3>Admin Panel</h3><p>Full control over users, products, orders, and system storage. Change roles, delete entries, reset data.</p></div>
+        <div class="feature-card"><span class="feature-icon">🚀</span><h3>Vendor Dashboard</h3><p>Add/edit products, view customer orders, track inventory with low-stock alerts in one clean view.</p></div>
+        <div class="feature-card"><span class="feature-icon">🌙</span><h3>Dark Mode</h3><p>System-preference detection with manual override. Theme preference persists across sessions.</p></div>
+        <div class="feature-card"><span class="feature-icon">📱</span><h3>Mobile Responsive</h3><p>Fully responsive on all screen sizes — phones, tablets, and desktops with touch-friendly interactions.</p></div>
+        <div class="feature-card"><span class="feature-icon">🔍</span><h3>Advanced Search & Filter</h3><p>Search by name, tag, or description. Filter by category, price range, rating, and stock availability.</p></div>
+        <div class="feature-card"><span class="feature-icon">💳</span><h3>Checkout Flow</h3><p>3-step checkout: delivery info → payment (bKash/Nagad/COD) → order confirmation with ID.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TEAM ════════════════════════════════════════════════ -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Meet the <span class="accent">Team</span></h2>
+      </div>
+      <p class="team-subtitle">The developers behind RUETShop — built as part of the Software Development Project-I at the Department of Electrical & Computer Engineering, RUET.</p>
+
+      <div class="team-grid">
+
+        <!-- ── SHAKIB ───────────────────────────── -->
+        <div class="team-card" style="animation-delay:0.1s">
+          <div class="team-photo-wrap">
+            <div class="team-photo-portrait">
+              <img src="assets/admin_images/admin01_ashraful_anower.jpg"
+                   alt="Ashraful Anower Shakib"
+                   id="aboutDev1Img"
+                   onerror="this.parentElement.innerHTML='<div class=team-photo-fallback style=background:linear-gradient(135deg,#ff6b35,#e85520)><span>A</span></div>'"/>
+            </div>
+            <div class="team-photo-overlay"></div>
+          </div>
+
+          <div class="team-body">
+            <div class="team-name" id="aboutDev1Name">Ashraful Anower Shakib</div>
+            <div class="team-role" id="aboutDev1Role"><i class="fas fa-crown"></i>Founder, CEO &amp; Lead Developer</div>
+            <p class="team-bio" id="aboutDev1Bio">Architected the full platform — from the LocalStorage DB layer, authentication system with rate limiting, to the multi-vendor order flow and admin panel. Passionate about clean, maintainable frontend code and great UX.</p>
+            <div class="team-details">
+              <div class="team-detail"><i class="fas fa-envelope"></i><a href="mailto:ashrafulanower@ruetshop.com" id="aboutDev1Email">ashrafulanower@ruetshop.com</a></div>
+              <div class="team-detail"><i class="fas fa-phone"></i><span id="aboutDev1Phone">+880 1816-442249</span></div>
+              <div class="team-detail"><i class="fas fa-university"></i><span>Dept. of ECE, RUET, Rajshahi</span></div>
+            </div>
+            <div class="team-socials">
+              <a href="https://github.com/" target="_blank" rel="noopener" class="social-btn github" id="aboutDev1Git">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-btn linkedin" id="aboutDev1In">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+              <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-btn facebook" id="aboutDev1Fb">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+              <a href="mailto:ashrafulanower@ruetshop.com" class="social-btn email" id="aboutDev1EmailBtn">
+                <i class="fas fa-envelope"></i> Email
+              </a>
+            </div>
+          </div>
+          <div class="team-card-footer">
+            <span class="team-badge badge-admin"><i class="fas fa-shield-alt"></i> Founder</span>
+            <span class="team-badge badge-ceo"><i class="fas fa-crown"></i> CEO</span>
+            <span class="team-badge badge-dev"><i class="fas fa-code"></i> Lead Developer</span>
+            <span class="team-badge badge-ece"><i class="fas fa-microchip"></i> ECE</span>
+          </div>
+        </div>
+
+        <!-- ── SAMIM ───────────────────────────── -->
+        <div class="team-card" style="animation-delay:0.2s">
+          <div class="team-photo-wrap">
+            <div class="team-photo-portrait">
+              <img src="assets/admin_images/admin02_saniat_samim.jpg"
+                   alt="Al Saniat Samim"
+                   id="aboutDev2Img"
+                   onerror="this.parentElement.innerHTML='<div class=team-photo-fallback style=background:linear-gradient(135deg,#3b82f6,#1d4ed8)><span>S</span></div>'"/>
+            </div>
+            <div class="team-photo-overlay"></div>
+          </div>
+
+          <div class="team-body">
+            <div class="team-name" id="aboutDev2Name">Al Saniat Samim</div>
+            <div class="team-role" id="aboutDev2Role"><i class="fas fa-tools"></i> Co-Founder, CTO &amp; Co-Developer </div>
+            <p class="team-bio" id="aboutDev2Bio">Contributed to the product system, cart mechanics, and the vendor dashboard. Focused on UI polish, responsive design, and ensuring a smooth, accessible shopping experience across all devices and screen sizes.</p>
+            <div class="team-details">
+              <div class="team-detail"><i class="fas fa-envelope"></i><a href="mailto:saniatsamim@ruetshop.com" id="aboutDev2Email">saniatsamim@ruetshop.com</a></div>
+              <div class="team-detail"><i class="fas fa-phone"></i><span id="aboutDev2Phone">+880 1745-233662</span></div>
+              <div class="team-detail"><i class="fas fa-university"></i><span>Dept. of ECE, RUET, Rajshahi</span></div>
+            </div>
+            <div class="team-socials">
+              <a href="https://github.com/" target="_blank" rel="noopener" class="social-btn github" id="aboutDev2Git">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-btn linkedin" id="aboutDev2In">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+              <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-btn facebook" id="aboutDev2Fb">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+              <a href="mailto:saniatsamim@ruetshop.com" class="social-btn email" id="aboutDev2EmailBtn">
+                <i class="fas fa-envelope"></i> Email
+              </a>
+            </div>
+          </div>
+          <div class="team-card-footer">
+            <span class="team-badge badge-admin"><i class="fas fa-shield-alt"></i> Co-Founder</span>
+            <span class="team-badge badge-ceo"><i class="fas fa-crown"></i> CTO</span>
+            <span class="team-badge badge-dev"><i class="fas fa-code"></i> UI Engineer</span>
+            <span class="team-badge badge-ece"><i class="fas fa-microchip"></i> ECE</span>
+          </div>
+        </div>
+
+        <!-- ── SAKIB ───────────────────────────── -->
+        <div class="team-card" style="animation-delay:0.3s">
+          <div class="team-photo-wrap">
+            <div class="team-photo-portrait">
+              <img src="assets/admin_images/admin03_mohammed_sakib.jpg"
+                   alt="Mohammed Sakib"
+                   id="aboutDev3Img"
+                   onerror="this.parentElement.innerHTML='<div class=team-photo-fallback style=background:linear-gradient(135deg,#22c55e,#15803d)><span>M</span></div>'"/>
+            </div>
+            <div class="team-photo-overlay"></div>
+          </div>
+
+          <div class="team-body">
+            <div class="team-name" id="aboutDev3Name">Mohammed Sakib</div>
+            <div class="team-role" id="aboutDev3Role"><i class="fas fa-tools"></i> Co-Founder, COO &amp; Co-Developer</div>
+            <p class="team-bio" id="aboutDev3Bio">Worked on the order management system, review & rating engine, wishlist feature, and the seed data layer with 100+ realistic products. Shaped the data architecture, testing strategy, and product category structure.</p>
+            <div class="team-details">
+              <div class="team-detail"><i class="fas fa-envelope"></i><a href="mailto:mohammedsakib@ruetshop.com" id="aboutDev3Email">mohammedsakib@ruetshop.com</a></div>
+              <div class="team-detail"><i class="fas fa-phone"></i><span id="aboutDev3Phone">+880 1310-097126</span></div>
+              <div class="team-detail"><i class="fas fa-university"></i><span>Dept. of ECE, RUET, Rajshahi</span></div>
+            </div>
+            <div class="team-socials">
+              <a href="https://github.com/stmohammedsakib" target="_blank" rel="noopener" class="social-btn github" id="aboutDev3Git">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/stmohammedsakib" target="_blank" rel="noopener" class="social-btn linkedin" id="aboutDev3In">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+              <a href="https://www.facebook.com/stmohammedsakib" target="_blank" rel="noopener" class="social-btn facebook" id="aboutDev3Fb">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+              <a href="mailto:mohammedsakib@ruetshop.com" class="social-btn email" id="aboutDev3EmailBtn">
+                <i class="fas fa-envelope"></i> Email
+              </a>
+            </div>
+          </div>
+          <div class="team-card-footer">
+            <span class="team-badge badge-admin"><i class="fas fa-shield-alt"></i> Co-Founder</span>
+            <span class="team-badge badge-ceo"><i class="fas fa-crown"></i> COO</span>
+            <span class="team-badge badge-dev"><i class="fas fa-code"></i>Data Architect </span>
+            <span class="team-badge badge-ece"><i class="fas fa-microchip"></i> ECE</span>
+          </div>
+        </div>
+
+      </div><!-- /team-grid -->
+    </div>
+  </section>
+
+  <!-- ══ TECH STACK ══════════════════════════════════════════ -->
+  <section class="tech-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Tech <span class="accent">Stack</span></h2>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-pill"><span class="tech-pill-icon">🌐</span> HTML5</div>
+        <div class="tech-pill"><span class="tech-pill-icon">🎨</span> CSS3</div>
+        <div class="tech-pill"><span class="tech-pill-icon">⚡</span> JavaScript</div>
+        <div class="tech-pill"><span class="tech-pill-icon">💾</span> LocalStorage DB Layer</div>
+        <div class="tech-pill"><span class="tech-pill-icon">🎯</span> Font Awesome 6.5</div>
+        <div class="tech-pill"><span class="tech-pill-icon">📐</span> CSS Grid &amp; Flexbox</div>
+        <div class="tech-pill"><span class="tech-pill-icon">🌙</span> CSS Custom Properties</div>
+        <div class="tech-pill"><span class="tech-pill-icon">📱</span> Mobile-First Design</div>
+        <div class="tech-pill"><span class="tech-pill-icon">🔒</span> Client-Side Auth &amp; Rate Limiting</div>
+      </div>
+      <div class="version-info">
+        <span class="v-badge"><i class="fas fa-code-branch"></i> ECE'23 Series</span>
+        <span class="v-badge"><i class="fas fa-flask"></i> Software Development Project-I</span>
+        <span class="v-badge"><i class="fas fa-university"></i> Dept. of ECE, RUET</span>
+        <span class="v-badge"><i class="fas fa-map-marker-alt"></i> Rajshahi-6204, Bangladesh</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA & CONTACT ══════════════════════════════════════ -->
+  <section class="about-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to <span class="gradient-text">Start Shopping?</span></h2>
+        <p>Join thousands of RUET students already using RUETShop. Browse products, or start selling as a vendor today.</p>
+        <div class="cta-actions">
+          <a href="products.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-shopping-bag"></i> Explore Products
+          </a>
+          <a href="auth.html?tab=register" class="btn btn-white btn-lg">
+            <i class="fas fa-store"></i> Become a Vendor
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-card-icon">📍</span>
+          <h4>Location</h4>
+          <p id="aboutContactLocation">Rajshahi University of Engineering &amp; Technology<br/>Rajshahi-6204, Bangladesh</p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card-icon">📧</span>
+          <h4>Support Email</h4>
+          <a href="mailto:support@ruetshop.com" id="aboutContactEmail">support@ruetshop.com</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card-icon">📞</span>
+          <h4>Phone</h4>
+          <a href="tel:+8801843885547" id="aboutContactPhone">+880 1843-885547</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card-icon">🏛️</span>
+          <h4>Department of</h4>
+          <p id="aboutContactDept">Electrical &amp; Computer Engineering (ECE) <br/>RUET, Rajshahi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- ══ FOOTER ═════════════════════════════════════════════ -->
+  <div id="app-footer"></div>
+
+  <!-- ══ SCRIPTS ════════════════════════════════════════════ -->
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Animated counters
+      const allProducts = typeof Products !== "undefined" ? Products.getAll() : [];
+      const allUsers    = typeof DB !== "undefined" ? DB.findAll("ruet_users") : [];
+      const allOrders   = typeof DB !== "undefined" ? DB.findAll("ruet_orders") : [];
+
+      // Load dynamic content
+      const aboutContent = typeof DB !== "undefined" ? DB.get("ruet_about_content") : null;
+      if (aboutContent) {
+        const heroDesc = document.getElementById("aboutHeroDescText");
+        const missionText = document.getElementById("aboutMissionText");
+        if (heroDesc && aboutContent.hero) heroDesc.textContent = aboutContent.hero;
+        if (missionText && aboutContent.mission) {
+          missionText.innerHTML = aboutContent.mission.split('\n').filter(p => p.trim() !== '').map(p => `<p>${Utils.escapeHtml(p)}</p>`).join('');
+        }
+
+        // Contact Info
+        const locId = document.getElementById("aboutContactLocation");
+        const emailId = document.getElementById("aboutContactEmail");
+        const phoneId = document.getElementById("aboutContactPhone");
+        const deptId = document.getElementById("aboutContactDept");
+        if (locId && aboutContent.contactLoc) locId.innerHTML = Utils.escapeHtml(aboutContent.contactLoc).replace(/\n/g, "<br/>");
+        if (emailId && aboutContent.contactEmail) { emailId.textContent = aboutContent.contactEmail; emailId.href = "mailto:" + aboutContent.contactEmail; }
+        if (phoneId && aboutContent.contactPhone) { phoneId.textContent = aboutContent.contactPhone; phoneId.href = "tel:" + aboutContent.contactPhone.replace(/[\s-]/g, ""); }
+        if (deptId && aboutContent.contactDept) deptId.innerHTML = Utils.escapeHtml(aboutContent.contactDept).replace(/\n/g, "<br/>");
+
+        // Developer Info
+        const devPhotos = typeof DB !== "undefined" ? DB.get("ruet_dev_photos") || {} : {};
+        for (let i = 1; i <= 3; i++) {
+          const devName = document.getElementById(`aboutDev${i}Name`);
+          const devRole = document.getElementById(`aboutDev${i}Role`);
+          const devImg = document.getElementById(`aboutDev${i}Img`);
+          const devBio = document.getElementById(`aboutDev${i}Bio`);
+          const devEmail = document.getElementById(`aboutDev${i}Email`);
+          const devPhone = document.getElementById(`aboutDev${i}Phone`);
+          const devGit = document.getElementById(`aboutDev${i}Git`);
+          const devIn = document.getElementById(`aboutDev${i}In`);
+          const devFb = document.getElementById(`aboutDev${i}Fb`);
+          const devEmailBtn = document.getElementById(`aboutDev${i}EmailBtn`);
+
+          if (devName && aboutContent[`dev${i}Name`]) devName.textContent = aboutContent[`dev${i}Name`];
+          if (devRole && aboutContent[`dev${i}Role`]) devRole.innerHTML = aboutContent[`dev${i}Role`];
+          if (devBio && aboutContent[`dev${i}Bio`]) devBio.textContent = aboutContent[`dev${i}Bio`];
+          if (devEmail && aboutContent[`dev${i}Email`]) { 
+            devEmail.textContent = aboutContent[`dev${i}Email`]; 
+            devEmail.href = "mailto:" + aboutContent[`dev${i}Email`]; 
+            if (devEmailBtn) devEmailBtn.href = "mailto:" + aboutContent[`dev${i}Email`];
+          }
+          if (devPhone && aboutContent[`dev${i}Phone`]) devPhone.textContent = aboutContent[`dev${i}Phone`];
+          if (devGit && aboutContent[`dev${i}Git`]) devGit.href = aboutContent[`dev${i}Git`];
+          if (devIn && aboutContent[`dev${i}In`]) devIn.href = aboutContent[`dev${i}In`];
+          if (devFb && aboutContent[`dev${i}Fb`]) devFb.href = aboutContent[`dev${i}Fb`];
+
+          // Load uploaded photo from dedicated storage (persists across logouts)
+          if (devImg && devPhotos[`dev${i}`]) {
+            devImg.src = devPhotos[`dev${i}`];
+          }
+        }
+      }
+
+      function animateCount(id, target, suffix = "+") {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let cur = 0;
+        const step = Math.max(1, Math.ceil(target / 45));
+        const t = setInterval(() => {
+          cur += step;
+          if (cur >= target) { cur = target; clearInterval(t); }
+          el.textContent = cur + suffix;
+        }, 26);
+      }
+
+      animateCount("aStatProducts", allProducts.length);
+      animateCount("aStatVendors",  allUsers.filter(u => u.role === "vendor").length);
+      animateCount("aStatOrders",   allOrders.length);
+    });
+  </script>
+
+</body>
+</html>

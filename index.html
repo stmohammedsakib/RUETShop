@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RUETShop — Buy and sell within your campus community. Electronics, books, clothing, and more."/>
+  <title>RUETShop — Campus Marketplace for RUET Students</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
+</head>
+<body>
+
+  <!-- NOSCRIPT -->
+  <noscript>
+    <div style="padding:2rem;text-align:center;font-family:sans-serif;background:#ff6b35;color:#fff;">
+      <h2>JavaScript Required</h2>
+      <p>RUETShop requires JavaScript to run. Please enable it in your browser settings.</p>
+    </div>
+  </noscript>
+
+  <!-- NAVBAR -->
+  <div id="app-navbar"></div>
+
+  <main>
+  <!-- HERO -->
+  <section class="hero" id="heroSection">
+    <div class="hero-content">
+      <span class="hero-badge">🎓 Campus Marketplace — Built for RUET Students</span>
+      <h1>Built by <span class="gradient-text">Students</span><br/>Designed for <span class="gradient-text">Students</span></h1>
+      <p class="hero-subtitle">Discover products from your campus vendors.<br>Fast, trusted, and student-friendly shopping experience.</p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-compass"></i> Explore Products
+        </a>
+        <a href="auth.html?tab=register" class="btn btn-outline btn-lg">
+          <i class="fas fa-store"></i> Become a Vendor
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="statProducts">0</span><span>Products</span></div>
+        <div class="stat"><span class="stat-num" id="statVendors">0</span><span>Vendors</span></div>
+        <div class="stat"><span class="stat-num" id="statOrders">0</span><span>Orders</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card floating">
+        <a href="products.html?cat=Electronics">
+        <div class="hc-emoji">📱</div>
+        <div class="hc-info"><strong>Electronics</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-1">
+        <a href="products.html?cat=Books">
+        <div class="hc-emoji">📚</div>
+        <div class="hc-info"><strong>Books</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-2">
+        <a href="products.html?cat=Clothing">
+        <div class="hc-emoji">👕</div>
+        <div class="hc-info"><strong>Clothing</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-3">
+        <a href="products.html?cat=Food">
+        <div class="hc-emoji">🍔</div>
+        <div class="hc-info"><strong>Food</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-4">
+        <a href="products.html?cat=Stationery">
+        <div class="hc-emoji">✏️</div>
+        <div class="hc-info"><strong>Stationery</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-5">
+        <a href="products.html?cat=Sports">
+        <div class="hc-emoji">⚽</div>
+        <div class="hc-info"><strong>Sports</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-6">
+        <a href="products.html?cat=Beauty">
+        <div class="hc-emoji">💄</div>
+        <div class="hc-info"><strong>Beauty</strong><span>** items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-7">
+        <a href="products.html?cat=Lab%20Supplies">
+        <div class="hc-emoji">🔬</div>
+        <div class="hc-info"><strong>Lab Supplies</strong><span>10+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-8">
+        <a href="products.html?cat=Services">
+        <div class="hc-emoji">🛠️</div>
+        <div class="hc-info"><strong>Services</strong><span>** items</span></div>
+        </a>
+      </div>
+      <div class="hero-card floating delay-9">
+        <a href="products.html?cat=Other">
+        <div class="hc-emoji">📦</div>
+        <div class="hc-info"><strong>Other</strong><span>5+ items</span></div>
+        </a>
+      </div>
+      <div class="hero-blob"></div>
+    </div>
+  </section>
+
+  <!-- TRUST BADGES -->
+  <section class="trust-section" id="trustSection">
+    <div class="container">
+      <div class="trust-grid reveal">
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <div class="trust-info">
+            <strong>Secure Payments</strong>
+            <span>Cash on Delivery & Online</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">⚡</span>
+          <div class="trust-info">
+            <strong>Fast Campus Delivery</strong>
+            <span>Within 24 hours on campus</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✅</span>
+          <div class="trust-info">
+            <strong>Verified Vendors</strong>
+            <span>Trusted RUET students</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🛡️</span>
+          <div class="trust-info">
+            <strong>User Protection</strong>
+            <span>100% refund guarantee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section categories-section" id="categoriesSection">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Browse <span class="accent">Categories</span></h2>
+        <a href="products.html" class="see-all">See All →</a>
+      </div>
+      <div class="categories-grid reveal" id="categoriesGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </section>
+  <!-- HOW IT WORKS -->
+  <section class="section how-it-works" id="howItWorks">
+    <div class="container">
+      <div class="section-header reveal" style="justify-content:center;text-align:center;">
+        <h2>How <span class="accent">It Works</span></h2>
+      </div>
+      <div class="steps-grid reveal">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Browse & Discover</h3>
+          <p>Explore hundreds of products listed by your fellow RUET students and local vendors.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Add to Cart</h3>
+          <p>Select what you love, compare prices, and add items to your cart with one click.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Get Delivered</h3>
+          <p>Place your order and receive it on campus. Fast, easy, and hassle-free delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section featured-section" id="featuredSection">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Featured <span class="accent">Products</span></h2>
+        <a href="products.html" class="see-all">See All →</a>
+      </div>
+      <div class="products-grid reveal" id="featuredGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-banner" id="promoBanner">
+    <div class="container">
+      <div class="banner-inner reveal">
+        <div class="banner-text">
+          <h2>Become a Campus Vendor</h2>
+          <p>List your products and reach thousands of RUET students instantly. Zero setup fees, zero commission.</p>
+          <a href="auth.html?tab=register" class="btn btn-white"><i class="fas fa-rocket"></i> Start Selling</a>
+        </div>
+        <div class="banner-emoji">🏪</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="section" id="newArrivalsSection">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>New <span class="accent">Arrivals</span></h2>
+        <a href="products.html" class="see-all">See All →</a>
+      </div>
+      <div class="products-grid reveal" id="newArrivalsGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section" id="testimonialsSection">
+    <div class="container">
+      <div class="section-header reveal" style="justify-content:center;text-align:center;">
+        <h2>What Students <span class="accent">Say</span></h2>
+      </div>
+      <div class="testimonials-grid reveal" id="testimonialsGrid">
+        <div class="testimonial-card">
+          <span class="testimonial-quote">"</span>
+          <p class="testimonial-text">RUETShop made it so easy to sell my old textbooks. Got great prices and the User was from my own hall!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RA</div>
+            <div class="testimonial-info">
+              <strong>Rafiq Ahmed</strong>
+              <span>EEE, 3rd Year</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-quote">"</span>
+          <p class="testimonial-text">I found affordable lab equipment here that I couldn't find anywhere else. Fast delivery right to the department!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">NK</div>
+            <div class="testimonial-info">
+              <strong>Nusrat Karim</strong>
+              <span>CSE, 4th Year</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-quote">"</span>
+          <p class="testimonial-text">The platform is sleek and modern. As a vendor, I've reached so many customers on campus. Highly recommend!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TH</div>
+            <div class="testimonial-info">
+              <strong>Tanvir Hasan</strong>
+              <span>ECE, 2nd Year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section" id="newsletterSection">
+    <div class="container">
+      <div class="newsletter-inner reveal">
+        <h2>Stay in the Loop</h2>
+        <p>Get notified about new products, exclusive deals, and campus events.</p>
+        <form class="newsletter-form" id="newsletterForm" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email address" aria-label="Email address" required />
+          <button type="button" class="btn btn-white" id="newsletterBtn">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- TOAST -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/ui/loader.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

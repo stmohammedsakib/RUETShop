@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Help & Support — Get answers to common questions and contact the RUETShop team."/>
+  <title>Help & Support — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/support.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <div id="app-navbar"></div>
+
+  <!-- HERO -->
+  <section class="support-hero">
+    <h1>Help & <span class="accent">Support</span></h1>
+    <p>We're here to help you with anything you need on RUETShop. Find answers below or reach out to our team.</p>
+    <div class="support-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="faqSearch" placeholder="Search for help topics..." />
+    </div>
+  </section>
+
+  <div class="support-container">
+
+    <!-- QUICK HELP -->
+    <div class="quick-help-grid">
+      <a href="auth.html" class="quick-help-card">
+        <span class="quick-help-icon">🚀</span>
+        <h3>Getting Started</h3>
+        <p>Create your account and start shopping or selling</p>
+      </a>
+      <a href="products.html" class="quick-help-card">
+        <span class="quick-help-icon">🛍️</span>
+        <h3>Browse Products</h3>
+        <p>Explore our campus marketplace catalog</p>
+      </a>
+      <a href="dashboard.html" class="quick-help-card">
+        <span class="quick-help-icon">📊</span>
+        <h3>Your Dashboard</h3>
+        <p>Manage orders, products, and your profile</p>
+      </a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 class="faq-section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>How do I become a vendor?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>Register an account and select "Dedicated Seller" during the sign-up process. Once registered, you will have access to the Vendor Dashboard to list your products, manage inventory, and track orders from Normal Users.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>What are the delivery options?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>Delivery is restricted to within the RUET campus. You can select specific locations like Hall Gate, Main Gate, Academic Building, Library, or Cafeteria during checkout. You can also specify a custom location if needed.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>How can I reset my password?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>Go to the Login page, click on "Forgot password?", enter your registered email address, and follow the prompts to verify your identity and set a new password.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>What payment methods are available?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>We support bKash, Nagad, and Cash on Delivery (COD). During checkout, simply select your preferred payment method and follow the instructions to complete your order.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>How do I add products as a vendor?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>After logging in as a vendor, go to your Dashboard → My Products tab → click "Add Product". Fill in the product name, category, price, stock, and description. You can also add an image URL or emoji.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Can I use the platform without an account?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! You can browse products and add items to your cart as a guest. However, to complete a purchase, leave reviews, or manage a wishlist, you'll need to create an account or sign in.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>How do I track my orders?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>Go to your Dashboard → Orders tab to view all your placed orders. Each order shows its current status (Processing, Confirmed, Shipped, Delivered) along with order details and delivery information.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3>Is my data secure on RUETShop?</h3>
+          <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! RUETShop uses hashed passwords, session management with automatic expiry, and rate-limited login (5 attempts with 15-minute lockout). All data is stored locally in your browser using localStorage.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <h2 class="contact-section-title">Get in Touch</h2>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h4>Email Us</h4>
+        <p>support@ruetshop.com</p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-phone"></i>
+        <h4>Call Us</h4>
+        <p>+880 1843885547</p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h4>Location</h4>
+        <p>RUET, Rajshahi-6204</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="support-cta">
+      <h3>Still need help?</h3>
+      <p>Can't find what you're looking for? Reach out to our support team.</p>
+      <a href="mailto:support@ruetshop.com" class="btn btn-primary">
+        <i class="fas fa-envelope"></i> Contact Support
+      </a>
+    </div>
+
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- FOOTER -->
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script>
+    // FAQ Accordion
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+
+      // Toggle current
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    // FAQ Search
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('faqSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          document.querySelectorAll('.faq-item').forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = (!query || text.includes(query)) ? '' : 'none';
+          });
+        });
+      }
+
+      // Footer year
+      const fy = document.getElementById('footerYear');
+      if (fy) fy.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

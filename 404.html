@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <style>
+    .not-found-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    .not-found-container h1 {
+      font-size: 8rem;
+      margin: 0;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .not-found-container h2 {
+      font-size: 2rem;
+      margin: 1rem 0;
+      color: var(--text-1);
+    }
+    .not-found-container p {
+      color: var(--text-2);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app-navbar"></div>
+
+  <main>
+    <div class="container not-found-container">
+      <h1>404</h1>
+      <h2>Oops! Page Not Found</h2>
+      <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+      <a href="index.html" class="btn btn-primary">
+        <i class="fas fa-home"></i> Go Back Home
+      </a>
+    </div>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+</body>
+</html>

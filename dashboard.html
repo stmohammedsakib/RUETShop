@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Manage your orders, products, and profile on RUETShop."/>
+  <title>Dashboard — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+  <link rel="stylesheet" href="css/order-tracking.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── Stock Alert Banner ─────────────────────────────────── */
+    .stock-alert-banner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.4s ease;
+    }
+    .stock-alert {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1.25rem;
+      border-radius: var(--radius-lg);
+      font-size: 0.88rem;
+      flex-wrap: wrap;
+    }
+    .stock-alert i { font-size: 1.1rem; flex-shrink: 0; }
+    .stock-alert strong { font-weight: 700; flex-shrink: 0; }
+    .stock-alert span { color: inherit; opacity: 0.8; flex: 1; min-width: 0;
+                        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .stock-alert .btn { margin-left: auto; flex-shrink: 0; }
+    .stock-alert.out-of-stock {
+      background: rgba(239,68,68,0.08);
+      border: 1.5px solid rgba(239,68,68,0.25);
+      color: var(--danger);
+    }
+    .stock-alert.low-stock {
+      background: rgba(245,158,11,0.08);
+      border: 1.5px solid rgba(245,158,11,0.25);
+      color: var(--warning);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app-navbar"></div>
+
+  <div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="dash-profile">
+        <div class="dash-avatar" id="dashAvatar">U</div>
+        <div class="dash-user-info">
+          <strong id="dashUserName">User</strong>
+          <span class="role-badge" id="dashRole">Buyer</span>
+        </div>
+      </div>
+
+      <nav class="dash-nav">
+        <a class="dash-nav-item active" data-tab="overview">
+          <i class="fas fa-chart-pie"></i> Overview
+        </a>
+        <a class="dash-nav-item" data-tab="products" id="vendorOnlyNav">
+          <i class="fas fa-box"></i> My Products
+        </a>
+        <a class="dash-nav-item" data-tab="orders">
+          <i class="fas fa-shopping-bag"></i> My Purchases
+        </a>
+        <a class="dash-nav-item" data-tab="sales">
+          <i class="fas fa-hand-holding-usd"></i> Sales
+        </a>
+        <a class="dash-nav-item" data-tab="wishlist">
+          <i class="fas fa-heart"></i> Wishlist
+        </a>
+        <a class="dash-nav-item" data-tab="profile">
+          <i class="fas fa-user-cog"></i> Profile
+        </a>
+        <a class="dash-nav-item" data-tab="security">
+          <i class="fas fa-key"></i> Change Password
+        </a>
+        <a class="dash-nav-item" data-tab="tracking">
+          <i class="fas fa-map-marker-alt"></i> Track Order
+        </a>
+        <a class="dash-nav-item logout-item" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dash-main">
+
+      <!-- OVERVIEW -->
+      <div class="dash-tab active" id="tab-overview">
+        <h2>Dashboard <span class="accent">Overview</span></h2>
+
+        <!-- Stock alert banner (vendor only, JS-injected) -->
+        <div id="stockAlertBanner" class="hidden"></div>
+
+        <div class="stats-cards" id="statsCards">
+          <!-- JS injected -->
+        </div>
+
+        <div class="dash-grid-2" id="dashGrid2">
+          <!-- JS injected -->
+        </div>
+
+      </div>
+
+      <!-- MY PRODUCTS (vendor) -->
+      <div class="dash-tab hidden" id="tab-products">
+        <div class="tab-header">
+          <h2>My <span class="accent">Products</span></h2>
+          <button class="btn btn-primary" id="addProductBtn">
+            <i class="fas fa-plus"></i> Add Product
+          </button>
+        </div>
+        <div class="products-table-wrap">
+          <table class="data-table" id="productsTable">
+            <thead>
+              <tr>
+                <th>Image</th><th>Name</th><th>Category</th>
+                <th>Price</th><th>Stock</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+          <div class="empty-state hidden" id="noProducts">
+            <span>📦</span><p>No products yet. Add your first product!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="dash-tab hidden" id="tab-orders">
+        <div class="tab-header">
+          <h2>My <span class="accent">Purchases</span></h2>
+          <a href="#" onclick="DashboardPage.switchTab('tracking'); return false;" class="btn btn-outline btn-sm">
+            <i class="fas fa-map-marker-alt"></i> Track an Order
+          </a>
+        </div>
+        <div id="ordersList"></div>
+      </div>
+
+      <!-- SALES -->
+      <div class="dash-tab hidden" id="tab-sales">
+        <div class="tab-header">
+          <h2>My <span class="accent">Sales</span></h2>
+        </div>
+        <div id="salesList"></div>
+      </div>
+
+      <!-- WISHLIST -->
+      <div class="dash-tab hidden" id="tab-wishlist">
+        <h2>My <span class="accent">Wishlist</span></h2>
+        <div class="products-grid" id="wishlistGrid"></div>
+      </div>
+
+      <!-- TRACKING -->
+      <div class="dash-tab hidden" id="tab-tracking">
+        <h2>Track <span class="accent">Order</span></h2>
+        <div class="tracking-wrapper" id="trackingWrapper" style="padding:0; margin-top:1.5rem;">
+          <!-- SEARCH BAR -->
+          <div class="tracking-search-card" id="trackingSearchCard">
+            <div class="tracking-search-icon">📦</div>
+            <h2>Track Your Order</h2>
+            <p>Enter your Order ID or select from your recent orders below.</p>
+            <div class="tracking-input-row">
+              <input type="text" id="orderIdInput" class="form-input" placeholder="e.g. ORDER_ABC123"/>
+              <button class="btn btn-primary" id="trackOrderBtn">
+                <i class="fas fa-search"></i> Track
+              </button>
+            </div>
+            <div id="myOrdersList" class="my-orders-quick"></div>
+          </div>
+
+          <!-- ORDER DETAIL VIEW -->
+          <div class="order-track-detail hidden" id="orderTrackDetail">
+            <button class="btn btn-outline btn-sm back-btn" id="backToSearch">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div id="orderDetailContent"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="dash-tab hidden" id="tab-profile">
+        <h2>Edit <span class="accent">Profile</span></h2>
+        <div class="profile-form-wrap">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="profileName" class="form-input"/>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="profileEmail" class="form-input" disabled/>
+          </div>
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" id="profileAvatar" class="form-input" accept="image/*"/>
+            <div id="profileAvatarPreview"
+                 style="margin-top:10px;width:64px;height:64px;border-radius:50%;overflow:hidden;display:none;border:2px solid var(--border);">
+              <img src="" alt="Profile avatar" style="width:100%;height:100%;object-fit:cover;"/>
+            </div>
+            <input type="hidden" id="profileAvatarBase64"/>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="profilePhone" class="form-input"/>
+          </div>
+          <div class="form-group">
+            <label>Student ID</label>
+            <input type="text" id="profileStudentId" class="form-input"/>
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea id="profileBio" class="form-input" rows="3"></textarea>
+          </div>
+          <button class="btn btn-primary" id="saveProfile">
+            <i class="fas fa-save"></i> Save Changes
+          </button>
+        </div>
+      </div>
+
+      <!-- SECURITY TAB -->
+      <div class="dash-tab hidden" id="tab-security">
+        <h2>Change <span class="accent">Password</span></h2>
+        <div class="profile-form-wrap">
+          <div class="form-group">
+            <label>Old Password <small>(required)</small></label>
+            <input type="password" id="profileOldPassword" class="form-input" placeholder="Old password"/>
+          </div>
+          <div class="form-group">
+            <label>New Password <small>(min 6 characters)</small></label>
+            <input type="password" id="profilePassword" class="form-input" placeholder="New password"/>
+          </div>
+          <button class="btn btn-primary" id="savePassword">
+            <i class="fas fa-key"></i> Update Password
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ADD/EDIT PRODUCT MODAL -->
+  <div class="modal-overlay hidden" id="productModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="productModalTitle">Add Product</h3>
+        <button class="modal-close" id="closeProductModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editProductId"/>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Product Name *</label>
+            <input type="text" id="pName" class="form-input" placeholder="Product name"/>
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="pCategory" class="form-input">
+              <option value="">Select category</option>
+              <option>Electronics</option><option>Books</option>
+              <option>Clothing</option><option>Food</option>
+              <option>Stationery</option><option>Sports</option>
+              <option>Lab Supplies</option><option>Beauty</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="pDescription" class="form-input" rows="3"
+                    placeholder="Describe your product..."></textarea>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Price (৳) *</label>
+            <input type="number" id="pPrice" class="form-input" placeholder="0" min="0"/>
+          </div>
+          <div class="form-group">
+            <label>Original Price (৳) <small>for discount</small></label>
+            <input type="number" id="pOriginalPrice" class="form-input" placeholder="0" min="0"/>
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Stock Quantity *</label>
+            <input type="number" id="pStock" class="form-input" placeholder="0" min="0"/>
+          </div>
+          <div class="form-group">
+            <label>Image Emoji</label>
+            <input type="text" id="pEmoji" class="form-input" placeholder="e.g. 📱"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Image URL (optional)</label>
+          <input type="url" id="pImage" class="form-input" placeholder="https://..."/>
+        </div>
+        <div class="form-group">
+          <label>Tags (comma separated)</label>
+          <input type="text" id="pTags" class="form-input" placeholder="e.g. phone, android, samsung"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelProductModal">Cancel</button>
+        <button class="btn btn-primary" id="saveProductBtn">
+          <i class="fas fa-save"></i> Save Product
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM MODAL -->
+  <div class="modal-overlay hidden" id="deleteModal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3>Delete Product</h3>
+        <button class="modal-close" id="closeDeleteModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this product? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelDelete">Cancel</button>
+        <button class="btn btn-danger" id="confirmDelete">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-footer"></div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/modal.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/features/orders.js"></script>
+  <script src="js/pages/order-tracking.js"></script>
+  <script src="js/pages/dashboard-page.js"></script>
+</body>
+</html>

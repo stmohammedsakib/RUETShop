@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Browse all products on RUETShop — electronics, books, clothing, and more from campus vendors."/>
+  <title>Products — RUETShop</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/products.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div id="app-navbar"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>All <span class="accent">Products</span></h1>
+      <p>Browse our full campus marketplace catalog</p>
+    </div>
+  </div>
+
+  <div class="products-layout container">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="filter-sidebar" id="filterSidebar">
+      <div class="filter-header">
+        <h3>Filters</h3>
+        <button class="btn-text" id="clearFilters">Clear All</button>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Category</label>
+        <div class="filter-options" id="categoryFilters">
+          <!-- JS injected -->
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Condition</label>
+        <div class="filter-options" id="conditionFilters">
+          <label class="filter-checkbox">
+            <input type="checkbox" value="New" onchange="ProductsPage.onConditionChange(this)"/>
+            <span>🏷️ Brand New</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Like New" onchange="ProductsPage.onConditionChange(this)"/>
+            <span>✨ Like New</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Used" onchange="ProductsPage.onConditionChange(this)"/>
+            <span>♻️ Used</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Price Range (৳)</label>
+        <div class="price-range">
+          <div class="price-input-group" style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <input type="number" id="minPriceInput" class="form-input" min="0" placeholder="Min Price" style="width: 50%;"/>
+            <input type="number" id="maxPriceInput" class="form-input" min="0" placeholder="Max Price" style="width: 50%;"/>
+          </div>
+          <div class="dual-range-slider">
+            <div class="slider-track" id="sliderTrack"></div>
+            <input type="range" id="minPriceRange" min="0" max="500000" value="0" step="100"/>
+            <input type="range" id="maxPriceRange" min="0" max="500000" value="500000" step="100"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Rating</label>
+        <div class="filter-options">
+          <label class="filter-check"><input type="radio" name="rating" value="4"/> ⭐⭐⭐⭐ & above</label>
+          <label class="filter-check"><input type="radio" name="rating" value="3"/> ⭐⭐⭐ & above</label>
+          <label class="filter-check"><input type="radio" name="rating" value="0" checked/> All Ratings</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Availability</label>
+        <div class="filter-options">
+          <label class="filter-check"><input type="checkbox" id="inStockOnly"/> In Stock Only</label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-full" id="applyFilters">Apply Filters</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="products-main">
+      <div class="products-toolbar">
+        <span id="productCount">0 products found</span>
+        <div class="toolbar-right">
+          <select id="sortSelect">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="newest">Newest</option>
+          </select>
+          <button class="view-btn active" id="gridView" data-view="grid"><i class="fas fa-th"></i></button>
+          <button class="view-btn" id="listView" data-view="list"><i class="fas fa-list"></i></button>
+        </div>
+      </div>
+
+      <!-- ACTIVE FILTERS -->
+      <div class="active-filters" id="activeFilters"></div>
+
+      <!-- SKELETON / PRODUCTS -->
+      <div class="products-grid" id="productsGrid">
+        <!-- JS injected -->
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state hidden" id="emptyState" style="text-align:center;padding:4rem 2rem;">
+        <span style="font-size:4rem;display:block;margin-bottom:1rem;">🔍</span>
+        <h3>No products found</h3>
+        <p style="color:var(--text-3);margin-top:0.5rem;">Try adjusting your filters or search terms.</p>
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="pagination" id="pagination"></div>
+    </main>
+  </div>
+
+  <!-- MOBILE FILTER TOGGLE -->
+  <button class="fab-filter" id="fabFilter">
+    <i class="fas fa-sliders-h"></i> Filters
+  </button>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div id="app-footer"></div>
+
+  <script src="js/core/db.js"></script>
+  <script src="js/core/seed.js"></script>
+  <script src="js/core/auth.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/ui/theme.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/components.js"></script>
+  <script src="js/ui/navbar.js"></script>
+  <script src="js/features/ratings.js"></script>
+  <script src="js/features/products.js"></script>
+  <script src="js/features/cart.js"></script>
+  <script src="js/features/wishlist.js"></script>
+  <script src="js/pages/products-page.js"></script>
+</body>
+</html>
