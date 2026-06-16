@@ -499,13 +499,26 @@ const ProductsPage = (() => {
       fabFilter.addEventListener('click', toggleMobileFilters);
     }
 
-    // Close mobile filter on overlay click
-    const sidebar = document.querySelector('.filter-sidebar');
-    if (sidebar) {
-      sidebar.addEventListener('click', (e) => {
-        if (e.target === sidebar) sidebar.classList.remove('mobile-open');
+    // Apply filters button (mobile)
+    const applyFiltersBtn = document.getElementById('applyFilters');
+    if (applyFiltersBtn) {
+      applyFiltersBtn.addEventListener('click', () => {
+        const sidebar = document.querySelector('.filter-sidebar');
+        if (sidebar) sidebar.classList.remove('mobile-open');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
+
+    // Close mobile filter on outside click
+    document.addEventListener('click', (e) => {
+      const sidebar = document.querySelector('.filter-sidebar');
+      const fabFilter = document.querySelector('.fab-filter');
+      if (sidebar && sidebar.classList.contains('mobile-open')) {
+        if (!sidebar.contains(e.target) && (!fabFilter || !fabFilter.contains(e.target))) {
+          sidebar.classList.remove('mobile-open');
+        }
+      }
+    });
 
     applyFilters();
   }
