@@ -15,6 +15,9 @@ const Components = (() => {
         <button><i class="fas fa-search"></i></button>
       </div>
       <div class="nav-actions">
+        <button class="icon-btn mobile-search-btn" id="mobileSearchBtn" title="Search" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
         <button class="icon-btn" id="themeToggle" title="Toggle Theme">
           <i class="fas fa-moon"></i>
         </button>
