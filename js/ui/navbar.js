@@ -13,6 +13,21 @@ const Navbar = (() => {
     initFooterYear();
     handleLoggedOutCTAs();
     handleVendorRestrictions();
+    handleSearchVisibility();
+  }
+
+  // ── Hide search on non-shopping pages ──────────────────────
+  function handleSearchVisibility() {
+    const hidePages = ['about.html', 'auth.html', 'dashboard.html', 'admin.html', 'support.html'];
+    const currentPath = location.pathname.split("/").pop();
+    
+    if (hidePages.includes(currentPath)) {
+      const searchContainer = document.querySelector('.nav-search');
+      if (searchContainer) searchContainer.style.display = 'none';
+      
+      const mobileBtn = document.getElementById('mobileSearchBtn');
+      if (mobileBtn) mobileBtn.style.display = 'none';
+    }
   }
 
   // ── Footer year ─────────────────────────────────────────
@@ -185,6 +200,18 @@ const Navbar = (() => {
   // ── Search binding ────────────────────────────────────────
   function bindSearch() {
     const isProductsPage = location.pathname.includes("products");
+
+    // Mobile Search Toggle
+    const mobileSearchBtn = document.getElementById("mobileSearchBtn");
+    const navbarEl = document.getElementById("navbar");
+    if (mobileSearchBtn && navbarEl) {
+      mobileSearchBtn.addEventListener("click", () => {
+        navbarEl.classList.toggle("show-mobile-search");
+        if (navbarEl.classList.contains("show-mobile-search")) {
+          setTimeout(() => document.getElementById("nav-search-input")?.focus(), 100);
+        }
+      });
+    }
 
     const desktopInput = document.getElementById("nav-search-input");
     const mobileInput = document.getElementById("globalSearch");
