@@ -291,6 +291,10 @@
 }
 .user-dropdown i { width: 16px; text-align: center; font-size: 0.85rem; }
 
+.mobile-search-btn {
+  display: none;
+}
+
 /* HAMBURGER */
 .hamburger {
   display: none;
@@ -367,13 +371,23 @@
   }
   .nav-logo { order: 1; }
   .nav-actions { order: 2; gap: 0.5rem; }
+  .mobile-search-btn { display: flex; }
+  
   .nav-search {
+    display: none !important;
+  }
+  .navbar.show-mobile-search .nav-search {
     display: flex !important;
     order: 3;
     width: 100%;
     max-width: 100%;
     margin-top: 0.25rem;
+    animation: fadeInDown 0.2s ease-out forwards;
   }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 480px) {
   .user-name-sm { display: none; }
