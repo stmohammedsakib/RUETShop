@@ -364,7 +364,7 @@ const ProductsPage = (() => {
   // ── Mobile Filter Toggle ───────────────────────────────────
   function toggleMobileFilters() {
     const sidebar = document.querySelector('.filter-sidebar');
-    if (sidebar) sidebar.classList.toggle('open');
+    if (sidebar) sidebar.classList.toggle('mobile-open');
   }
 
   // ── Init ───────────────────────────────────────────────────
@@ -503,7 +503,7 @@ const ProductsPage = (() => {
     const sidebar = document.querySelector('.filter-sidebar');
     if (sidebar) {
       sidebar.addEventListener('click', (e) => {
-        if (e.target === sidebar) sidebar.classList.remove('open');
+        if (e.target === sidebar) sidebar.classList.remove('mobile-open');
       });
     }
 
