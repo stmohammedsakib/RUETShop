@@ -239,22 +239,22 @@
 .active-filter-tag button:hover { color: var(--danger); transform: scale(1.2); }
 
 /* LIST VIEW */
-.products-grid.list-view {
+.products-grid.list {
   grid-template-columns: 1fr;
 }
-.products-grid.list-view .product-card {
+.products-grid.list .product-card {
   flex-direction: row;
   max-height: 160px;
 }
-.products-grid.list-view .product-card-img {
+.products-grid.list .product-card-img {
   width: 160px;
   min-width: 160px;
   height: 160px;
   font-size: 3rem;
   aspect-ratio: unset;
 }
-.products-grid.list-view .product-card-body { padding: 1.25rem; }
-.products-grid.list-view .product-card-actions { padding: 0 1.25rem 1.25rem; }
+.products-grid.list .product-card-body { padding: 1.25rem; }
+.products-grid.list .product-card-actions { padding: 0 1.25rem 1.25rem; }
 
 /* MOBILE SIDEBAR */
 .filter-sidebar.mobile-open {
