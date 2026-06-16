@@ -39,11 +39,13 @@ const Components = (() => {
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
+      <a href="dashboard.html#wishlist">Wishlist</a>
       <a href="about.html">About Us</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="cart.html">Cart</a>
       <a href="auth.html">Login</a>
       <a href="support.html">Help &amp; Support</a>
+      <a href="#" id="mobileThemeToggle">Toggle Theme</a>
     </div>
   </nav>
   `;
