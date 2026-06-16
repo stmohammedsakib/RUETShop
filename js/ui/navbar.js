@@ -1,381 +1,324 @@
-/* =============================================
-   RUETShop — Navbar
-   ============================================= */
+// js/ui/navbar.js — Non-destructive Navbar Updates
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 500;
-  height: var(--nav-height);
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  transition: background var(--transition), box-shadow var(--transition);
-  width: 100%;
-}
-[data-theme="dark"] .navbar {
-  background: rgba(30,30,40,0.85);
-}
-.navbar.scrolled {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-.nav-container {
-  height: 100%;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  min-width: 0;
-}
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.logo-icon { font-size: 1.5rem; }
-.logo-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-.logo-text .accent { color: var(--primary); }
+const Navbar = (() => {
 
-.nav-search {
-  flex: 1;
-  max-width: 440px;
-  display: flex;
-  align-items: center;
-  background: var(--surface-2);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-full);
-  transition: var(--transition);
-}
-.nav-search:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
-}
-.nav-search input {
-  flex: 1;
-  border: none;
-  background: none;
-  padding: 0.55rem 1rem;
-  font-size: 0.9rem;
-  outline: none;
-  color: var(--text);
-}
-.nav-search input::placeholder { color: var(--text-3); }
-.nav-search button {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-3);
-  font-size: 0.9rem;
-  transition: var(--transition);
-  flex-shrink: 0;
-}
-.nav-search button:hover { color: var(--primary); }
-
-/* SEARCH SUGGESTIONS */
-.search-suggestions-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  z-index: 200;
-  display: none;
-  animation: scaleIn 0.2s ease;
-}
-.suggestion-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  transition: var(--transition);
-}
-.suggestion-item:last-of-type { border-bottom: none; }
-.suggestion-item:hover { background: var(--surface-2); }
-.suggestion-img {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius);
-  object-fit: cover;
-  background: var(--surface-2);
-}
-.suggestion-info {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.suggestion-name {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.suggestion-price {
-  font-size: 0.8rem;
-  color: var(--primary);
-  font-weight: 600;
-}
-.suggestion-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  margin-top: 0.25rem;
-}
-.suggestion-tag {
-  background: rgba(255,107,53,0.1);
-  color: var(--primary-dark);
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 0.15rem 0.4rem;
-  border-radius: var(--radius-sm);
-  text-transform: lowercase;
-}
-.suggestion-tag.matched {
-  background: var(--primary);
-  color: white;
-}
-.suggestion-empty {
-  padding: 1rem;
-  text-align: center;
-  color: var(--text-3);
-  font-size: 0.85rem;
-}
-.suggestion-see-all {
-  display: block;
-  padding: 0.75rem 1rem;
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--primary);
-  background: var(--surface-2);
-  text-decoration: none;
-  border-top: 1px solid var(--border);
-  transition: var(--transition);
-}
-.suggestion-see-all:hover { background: var(--border); }
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-left: auto;
-  flex-shrink: 0;
-  min-width: 0;
-}
-.cart-btn { position: relative; }
-
-.nav-user { display: flex; align-items: center; gap: 0.5rem; }
-.user-menu-trigger {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
-  border-radius: var(--radius-full);
-  background: var(--surface-2);
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: var(--transition);
-}
-.user-menu-trigger:hover { border-color: var(--primary); }
-.user-avatar-sm {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.8rem;
-  font-family: var(--font-display);
-}
-.user-name-sm {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text);
-  max-width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* DROPDOWN */
-.nav-user-menu { position: relative; }
-.user-avatar-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
-  border-radius: var(--radius-full);
-  background: var(--surface-2);
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: var(--transition);
-}
-.user-avatar-btn:hover { border-color: var(--primary); }
-.user-avatar-sm {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: var(--primary); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.8rem; font-family: var(--font-display);
-}
-.user-name-sm {
-  font-size: 0.85rem; font-weight: 500; color: var(--text);
-  max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.user-dropdown-wrap { position: relative; }
-.user-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  min-width: 200px;
-  overflow: hidden;
-  z-index: 200;
-  display: none;
-  transform-origin: top right;
-}
-.user-dropdown.show {
-  display: block;
-  animation: scaleIn 0.2s ease;
-}
-.user-dropdown a, .user-dropdown button {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.65rem 1rem;
-  font-size: 0.88rem;
-  color: var(--text-2);
-  width: 100%;
-  text-align: left;
-  transition: var(--transition);
-  border-bottom: 1px solid var(--border);
-}
-.user-dropdown a:last-child, .user-dropdown button:last-child { border-bottom: none; }
-.user-dropdown a:hover, .user-dropdown button:hover {
-  background: var(--surface-2);
-  color: var(--primary);
-}
-.user-dropdown hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-.user-dropdown i { width: 16px; text-align: center; font-size: 0.85rem; }
-
-/* HAMBURGER */
-.hamburger {
-  display: none;
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius);
-  background: var(--surface-2);
-  border: 1.5px solid var(--border);
-  align-items: center;
-  justify-content: center;
-  color: var(--text-2);
-  font-size: 1rem;
-  transition: var(--transition);
-}
-.hamburger:hover { color: var(--primary); }
-
-/* MOBILE MENU */
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  gap: 0.25rem;
-  max-height: calc(100vh - var(--nav-height));
-  overflow-y: auto;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  padding: 0.65rem 0.75rem;
-  border-radius: var(--radius);
-  color: var(--text-2);
-  font-weight: 500;
-  transition: var(--transition);
-  font-size: 0.95rem;
-}
-.mobile-menu a:hover { background: var(--surface-2); color: var(--primary); }
-.mobile-logout-btn {
-  padding: 0.65rem 0.75rem;
-  border-radius: var(--radius);
-  color: var(--danger);
-  font-weight: 500;
-  font-size: 0.95rem;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: var(--transition);
-  cursor: pointer;
-  width: 100%;
-}
-.mobile-logout-btn:hover { background: rgba(239,68,68,0.08); }
-
-@media (max-width: 768px) {
-  .desktop-about-btn, 
-  #themeToggle, 
-  a[href="support.html"].icon-btn, 
-  a[href="dashboard.html#wishlist"].icon-btn, 
-  #navUser { 
-    display: none !important; 
+  function init() {
+    updateUserSection();
+    updateCartBadge();
+    updateWishlistBadge();
+    bindThemeToggle();
+    bindHamburger();
+    bindSearch();
+    highlightActiveLink();
+    initFooterYear();
+    handleLoggedOutCTAs();
+    handleVendorRestrictions();
   }
-  .hamburger { display: flex; }
-  .navbar { 
-    height: auto;
-    position: sticky;
-    overflow: visible;
-    padding-bottom: 0.5rem;
+
+  // ── Footer year ─────────────────────────────────────────
+  function initFooterYear() {
+    const year = new Date().getFullYear();
+    document.querySelectorAll('.footer-year').forEach(el => { el.textContent = year; });
+    const footerYear = document.getElementById('footerYear');
+    if (footerYear) footerYear.textContent = year;
   }
-  .nav-container { 
-    height: auto; 
-    padding: 0.5rem 0.875rem; 
-    gap: 0.5rem; 
-    flex-wrap: wrap; 
+
+  // ── Hide CTAs for logged in users ───────────────────────
+  function handleLoggedOutCTAs() {
+    if (Auth && Auth.isLoggedIn()) {
+      const promoBanner = document.getElementById("promoBanner");
+      if (promoBanner) promoBanner.style.display = "none";
+
+      document.querySelectorAll('a[href^="auth.html"]').forEach(link => {
+        const text = link.textContent.trim();
+        if (text.includes("Become a Vendor") || text.includes("Start Selling") || text.includes("Become a Campus Vendor")) {
+          link.href = "dashboard.html#products";
+          link.innerHTML = '<i class="fas fa-store"></i> Sell Products';
+        }
+      });
+    }
   }
-  .nav-logo { order: 1; }
-  .nav-actions { order: 2; gap: 0.5rem; }
-  .nav-search {
-    display: flex !important;
-    order: 3;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 0.25rem;
+
+  // ── Hide buying features for vendors ──────────────────────
+  function handleVendorRestrictions() {
+    const currentUser = Auth?.getSession();
+    if (currentUser && currentUser.role === "vendor") {
+      const cartBtn = document.querySelector('a.cart-btn');
+      if (cartBtn) cartBtn.style.display = "none";
+      
+      const wishBtn = document.querySelector('a[href*="#wishlist"]');
+      if (wishBtn) wishBtn.style.display = "none";
+    }
   }
-}
-@media (max-width: 480px) {
-  .user-name-sm { display: none; }
-  .nav-actions { gap: 0.25rem; }
-}
+
+  // ── Update user login/menu section ────────────────────────
+  function updateUserSection() {
+    const navUser = document.getElementById("navUser");
+    if (!navUser) return;
+
+    const currentUser = Auth.getSession();
+    if (!currentUser) return;
+
+    const avatarHtml = currentUser.avatar 
+      ? `<img src="${Utils.sanitizeUrl(currentUser.avatar)}" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.onerror=null; this.parentElement.innerHTML='${Utils.escapeHtml(currentUser.name[0].toUpperCase())}';">`
+      : Utils.escapeHtml(currentUser.name[0].toUpperCase());
+    
+    const avatarStyle = currentUser.avatar ? "background: transparent; overflow: hidden; padding: 0;" : "";
+
+    navUser.innerHTML = `
+      <div class="nav-user-menu">
+        <button class="user-avatar-btn" id="userMenuBtn" aria-label="User menu" aria-expanded="false">
+          <span class="user-avatar-sm" style="${avatarStyle}">${avatarHtml}</span>
+          <span class="user-name-sm">${Utils.escapeHtml(currentUser.name.split(" ")[0])}</span>
+        </button>
+        <div class="user-dropdown" id="userDropdown" role="menu">
+          ${currentUser.role === "admin" ? `<a href="admin.html" role="menuitem"><i class="fas fa-shield-alt"></i> Admin Panel</a>` : ""}
+          <a href="dashboard.html" role="menuitem"><i class="fas fa-chart-pie"></i> Dashboard</a>
+          <a href="dashboard.html#products" role="menuitem"><i class="fas fa-store"></i> Sell Products</a>
+          ${currentUser.role !== "vendor" ? `<a href="dashboard.html#orders" role="menuitem"><i class="fas fa-shopping-bag"></i> My Purchases</a>` : ""}
+          <a href="dashboard.html#sales" role="menuitem"><i class="fas fa-hand-holding-usd"></i> My Sales</a>
+          <a href="dashboard.html#profile" role="menuitem"><i class="fas fa-user-cog"></i> Profile</a>
+          <hr/>
+          <button id="navLogoutBtn" role="menuitem"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("userMenuBtn")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const dd = document.getElementById("userDropdown");
+      const btn = document.getElementById("userMenuBtn");
+      dd?.classList.toggle("show");
+      btn?.setAttribute("aria-expanded", dd?.classList.contains("show") ? "true" : "false");
+    });
+
+    document.getElementById("navLogoutBtn")?.addEventListener("click", () => {
+      Auth.logout();
+      window.location.href = "index.html";
+    });
+
+    // Update mobile menu login link
+    const mobileMenu = document.getElementById("mobileMenu");
+    if (mobileMenu) {
+      const loginLink = mobileMenu.querySelector('a[href="auth.html"]');
+      if (loginLink) {
+        loginLink.textContent = "Dashboard";
+        loginLink.href = "dashboard.html";
+      }
+      // Add admin panel link for admin users
+      if (currentUser.role === "admin" && !mobileMenu.querySelector('.mobile-admin-link')) {
+        const adminLink = document.createElement("a");
+        adminLink.href = "admin.html";
+        adminLink.className = "mobile-admin-link";
+        adminLink.innerHTML = '<i class="fas fa-shield-alt"></i> Admin Panel';
+        mobileMenu.insertBefore(adminLink, mobileMenu.firstChild);
+      }
+      if (!mobileMenu.querySelector(".mobile-logout-btn")) {
+        const logoutBtn = document.createElement("button");
+        logoutBtn.className = "mobile-logout-btn";
+        logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+        logoutBtn.addEventListener("click", () => {
+          Auth.logout();
+          window.location.href = "index.html";
+        });
+        mobileMenu.appendChild(logoutBtn);
+      }
+    }
+  }
+
+  // ── Badges ──────────────────────────────────────────────
+  function updateCartBadge() {
+    const badge = document.getElementById("cartBadge");
+    if (!badge) return;
+    const count = typeof Cart !== "undefined" ? Cart.getCount() : 0;
+    badge.textContent = count;
+    badge.classList.toggle("hidden", count === 0);
+  }
+
+  // Ensure wishlist badge updates
+  function updateWishlistBadge() {
+    const badge = document.getElementById("wishBadge");
+    if (!badge) return;
+    const count = typeof Wishlist !== "undefined" ? Wishlist.count() : 0;
+    badge.textContent = count;
+    badge.classList.toggle("hidden", count === 0);
+  }
+
+  // ── Theme toggle binding ──────────────────────────────────
+  function bindThemeToggle() {
+    const btn = document.getElementById("themeToggle");
+    if (btn) btn.addEventListener("click", () => Theme.toggle());
+    
+    const mobileBtn = document.getElementById("mobileThemeToggle");
+    if (mobileBtn) {
+      mobileBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        Theme.toggle();
+      });
+    }
+  }
+
+  // ── Hamburger binding ─────────────────────────────────────
+  function bindHamburger() {
+    const ham = document.getElementById("hamburger");
+    const menu = document.getElementById("mobileMenu");
+    if (!ham || !menu) return;
+    ham.addEventListener("click", () => {
+      menu.classList.toggle("open");
+      ham.classList.toggle("active");
+      const isOpen = menu.classList.contains("open");
+      ham.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    });
+
+    // Close mobile menu when a link is clicked
+    menu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("open");
+        ham.classList.remove("active");
+        ham.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      });
+    });
+  }
+
+  // ── Search binding ────────────────────────────────────────
+  function bindSearch() {
+    const isProductsPage = location.pathname.includes("products");
+
+    const desktopInput = document.getElementById("nav-search-input");
+    const mobileInput = document.getElementById("globalSearch");
+    const searchInputs = [desktopInput, mobileInput].filter(Boolean);
+
+    searchInputs.forEach(searchInput => {
+      const searchContainer = searchInput.parentElement;
+      let suggestionsBox = searchContainer.querySelector(".search-suggestions-dropdown");
+      if (!suggestionsBox) {
+        suggestionsBox = document.createElement("div");
+        suggestionsBox.className = "search-suggestions-dropdown";
+        searchContainer.style.position = "relative";
+        searchContainer.appendChild(suggestionsBox);
+      }
+
+      const doSearch = () => {
+        const query = searchInput.value.trim();
+        if (query && !isProductsPage) {
+          window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+        } else if (isProductsPage) {
+          suggestionsBox.style.display = "none";
+          searchInput.blur();
+        }
+      };
+
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          doSearch();
+        }
+      });
+
+      searchInput.addEventListener("input", (e) => {
+        const query = e.target.value.trim();
+        if (query.length < 2) {
+          suggestionsBox.style.display = "none";
+          return;
+        }
+        
+        if (typeof Products === "undefined") return;
+        
+        const results = Products.search(query).slice(0, 5);
+        if (results.length === 0) {
+          suggestionsBox.innerHTML = '<div class="suggestion-empty">No products found</div>';
+        } else {
+          const resultsHtml = results.map(p => {
+            let displayedTags = [];
+            if (p.tags && p.tags.length > 0) {
+              const terms = query.trim().toLowerCase().split(/\\s+/).filter(Boolean);
+              const matchedTags = p.tags.filter(t => terms.some(term => t.toLowerCase().includes(term)));
+              const unmatchedTags = p.tags.filter(t => !terms.some(term => t.toLowerCase().includes(term)));
+              displayedTags = [...matchedTags, ...unmatchedTags].slice(0, 3);
+            }
+            const tagsHtml = displayedTags.length > 0 
+              ? `<div class="suggestion-tags">${displayedTags.map(t => `<span class="suggestion-tag ${query.trim().toLowerCase().split(/\\s+/).filter(Boolean).some(term => t.toLowerCase().includes(term)) ? 'matched' : ''}">${Utils.escapeHtml(t)}</span>`).join("")}</div>` 
+              : "";
+            return `
+            <a href="product-detail.html?id=${p.id}" class="suggestion-item">
+              <img src="${Products.getImageUrl(p)}" alt="${Utils.escapeHtml(p.name)}" class="suggestion-img">
+              <div class="suggestion-info">
+                <span class="suggestion-name">${Utils.escapeHtml(p.name)}</span>
+                <span class="suggestion-price">${Products.formatPrice(p.price)}</span>
+                ${tagsHtml}
+              </div>
+            </a>
+            `;
+          }).join("");
+          
+          const seeAllHtml = `
+            <a href="products.html?search=${encodeURIComponent(query)}" class="suggestion-see-all">
+              See all results for "${Utils.escapeHtml(query)}" <i class="fas fa-arrow-right"></i>
+            </a>
+          `;
+          suggestionsBox.innerHTML = resultsHtml + seeAllHtml;
+        }
+        suggestionsBox.style.display = "block";
+      });
+
+      // Hide suggestions when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!searchContainer.contains(e.target)) {
+          suggestionsBox.style.display = "none";
+        }
+      });
+
+      // Show suggestions on focus if there is enough text
+      searchInput.addEventListener("focus", () => {
+        if (searchInput.value.trim().length >= 2) {
+          suggestionsBox.style.display = "block";
+        }
+      });
+
+      const searchBtn = searchContainer.querySelector("button");
+      if (searchBtn) searchBtn.addEventListener("click", doSearch);
+    });
+  }
+
+  function handleSearch() {
+    let input = document.getElementById("nav-search-input");
+    if (input && input.offsetParent === null) {
+      input = document.getElementById("globalSearch");
+    }
+    const query = input?.value?.trim();
+    if (query) window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+  }
+
+  // ── Active link highlight ─────────────────────────────────
+  function highlightActiveLink() {
+    const current = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".nav-container a, .mobile-menu a").forEach((link) => {
+      const href = link.getAttribute("href")?.split("?")[0]?.split("#")[0];
+      if (href === current) link.classList.add("active");
+    });
+  }
+
+  // ── Close dropdowns on outside click ──────────────────────
+  document.addEventListener("click", (e) => {
+    const dd = document.getElementById("userDropdown");
+    if (dd && !e.target.closest(".nav-user-menu")) {
+      dd.classList.remove("show");
+      document.getElementById("userMenuBtn")?.setAttribute("aria-expanded", "false");
+    }
+
+    const mm = document.getElementById("mobileMenu");
+    const ham = document.getElementById("hamburger");
+    if (mm && mm.classList.contains("open") && !e.target.closest(".mobile-menu") && !e.target.closest(".hamburger")) {
+      mm.classList.remove("open");
+      ham?.classList.remove("active");
+      ham?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+  });
+
+  return { init, updateCartBadge, updateWishlistBadge, updateUserSection, handleSearch };
+})();
+
+document.addEventListener("DOMContentLoaded", Navbar.init);
